@@ -1,4 +1,6 @@
-exports.success = {};
+exports.success = {
+  signin: 'LOGIN SUCCESS : Login request is successfully processed',
+};
 exports.error = {
   invalidRequest: 'INVALID REQUEST : Not Received the necessary data',
   internal: 'INTERNAL SERVER ERROR : Unexpected internal error occured',
