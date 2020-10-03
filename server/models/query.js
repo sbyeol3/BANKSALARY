@@ -1,5 +1,5 @@
 const userQuery = {
-  signin: 'SELECT id, username FROM USER WHERE username=? AND userpw=?',
+  signin: 'SELECT id, username FROM USER WHERE username=? AND userpw=?;',
 };
 
 module.exports = {
