@@ -3,16 +3,21 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const passport = require('passport');
 
 const app = express();
-const loginChecker = require('./middleware/loginChecker');
+const passportMiddleware = require('./middleware/localPassport');
+const indexRouter = require('./controllers/index');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(loginChecker);
+app.use(passport.initialize());
+passportMiddleware();
+
+app.use(indexRouter);
 
 app.use((req, res, next) => {
   next(createError(404));
