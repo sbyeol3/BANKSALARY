@@ -8,6 +8,14 @@ const findOneBySignin = async (data) => {
   return rows;
 };
 
+const findOne = async (data) => {
+  const { id, username } = data;
+  const query = userQuery.find;
+  const [rows] = await pool.execute(query, [id, username]);
+  return rows;
+};
+
 module.exports = {
   findOneBySignin,
+  findOne,
 };

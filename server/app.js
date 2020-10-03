@@ -6,7 +6,7 @@ const logger = require('morgan');
 const passport = require('passport');
 
 const app = express();
-const passportMiddleware = require('./middleware/localPassport');
+const passportMiddleware = require('./middleware/passport');
 const indexRouter = require('./controllers/index');
 
 app.use(logger('dev'));
