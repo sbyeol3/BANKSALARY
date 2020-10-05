@@ -21,7 +21,7 @@ const passportVerify = async (username, rawPassword, done) => {
 
 const jwtConfig = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-  secretOrKey: process.env.JWT_SECRET,
+  secretOrKey: process.env.JWT_SECRET_KEY,
 };
 const jwtVerify = async (payload, done) => {
   try {

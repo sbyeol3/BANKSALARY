@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const apiRouter = require('./api');
+const apiRouter = require('./api/index');
 const userSevice = require('../services/user');
 
 router.post('/signin', (req, res, next) => {
@@ -19,5 +19,5 @@ router.get('/signout', (req, res, next) => {
   }
 });
 
-router.all('/api', apiRouter);
+router.use('/api', apiRouter);
 module.exports = router;
