@@ -26,6 +26,18 @@ const signin = (req, res, next) => {
   })(req, res, next);
 };
 
+const signout = (req, res, next) => {
+  passport.authenticate('jwt', (passportError, user) => {
+    if (passportError) return res.status(500).json({ message: ERROR.datebase });
+    else if (!user) {
+      return res.status(401).json({ message: ERROR.unauthorized });
+    }
+    req.logout();
+    return res.status(200).json({ message: SUCCESS.signout });
+  })(req, res, next);
+};
+
 module.exports = {
   signin,
+  signout,
 };
