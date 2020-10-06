@@ -14,8 +14,10 @@ const categoryQuery = {
 };
 
 const logQuery = {
-  read:
-    'SELECT logId, kind, price, contents, logDate, payment FROM transaction_log WHERE userId = ?;',
+  read: `SELECT l.logId, l.kind, l.price, l.contents, l.logDate, l.payment, p.title FROM
+    (SELECT logId, kind, price, contents, logDate, payment FROM transaction_log WHERE userId = ?) as l
+    LEFT JOIN user_payment p ON l.payment=p.code
+    ;`,
 };
 
 module.exports = {
