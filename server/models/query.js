@@ -13,8 +13,14 @@ const categoryQuery = {
   read: 'SELECT code, title FROM CODETABLE WHERE parent = ?;',
 };
 
+const logQuery = {
+  read:
+    'SELECT logId, kind, price, contents, logDate, payment FROM transaction_log WHERE userId = ?;',
+};
+
 module.exports = {
   userQuery,
   paymentQuery,
   categoryQuery,
+  logQuery,
 };
