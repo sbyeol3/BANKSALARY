@@ -9,7 +9,12 @@ const paymentQuery = {
   delete: 'DELETE FROM USER_PAYMENT WHERE userId = ? AND code = ?;',
 };
 
+const categoryQuery = {
+  read: 'SELECT code, title FROM CODETABLE WHERE parent = ?;',
+};
+
 module.exports = {
   userQuery,
   paymentQuery,
+  categoryQuery,
 };
