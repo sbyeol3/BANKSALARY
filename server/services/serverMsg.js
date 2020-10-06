@@ -1,6 +1,7 @@
 exports.success = {
   signin: 'LOGIN SUCCESS : Login request is successfully processed',
   signout: 'LOGOUT SUCCESS : Logout request is successfully processed',
+  read: 'GET SUCCESS : The request is successfully processed',
   create: 'CREATE SUCCESS : create request is successfully processed',
   delete: 'DELETE SUCCESS : The data is successfully deleted',
 };
