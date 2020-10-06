@@ -1,8 +1,20 @@
 const pool = require('./index');
-const { userQuery } = require('./query');
+const { paymentQuery } = require('./query');
 
-const createPaymentMethod = async (data) => {
+const createPayMethod = async (data) => {
   const { id, title } = data;
-  const [rows] = await pool.execute();
+  const query = paymentQuery.create;
+  const [rows] = await pool.execute(query, [id, title]);
   return rows;
+};
+
+const readPayMethod = async (id) => {
+  const query = paymentQuery.read;
+  const [rows] = await pool.execute(query, [id]);
+  return rows;
+};
+
+module.exports = {
+  createPayMethod,
+  readPayMethod,
 };

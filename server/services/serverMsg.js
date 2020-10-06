@@ -1,6 +1,7 @@
 exports.success = {
   signin: 'LOGIN SUCCESS : Login request is successfully processed',
   signout: 'LOGOUT SUCCESS : Logout request is successfully processed',
+  create: 'CREATE SUCCESS : create request is successfully processed',
 };
 exports.error = {
   invalidRequest: 'INVALID REQUEST : Not Received the necessary data',
