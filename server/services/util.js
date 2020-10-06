@@ -27,3 +27,7 @@ exports.getParentCode = (code) => {
   const codeToString = code.toString();
   return +codeToString.substr(0, 3);
 };
+
+exports.isValidMonth = (month) => {
+  return month > 0 && month < 13;
+};
