@@ -12,4 +12,13 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.delete('/:logId', async (req, res) => {
+  try {
+    await LogService.deleteLog(req, res);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: ERROR.internal });
+  }
+});
+
 module.exports = router;

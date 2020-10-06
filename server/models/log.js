@@ -12,6 +12,13 @@ const readTotalByMonth = async (data) => {
   const { userId, year, month } = data;
   const query = logQuery.readSumTotal;
   const [rows] = await pool.execute(query, [userId, year, month]);
+  return rows;
+};
+
+const deleteLog = async (data) => {
+  const { userId, logId } = data;
+  const query = logQuery.delete;
+  const [rows] = await pool.execute(query, [userId, logId]);
   console.log(rows);
   return rows;
 };
@@ -19,4 +26,5 @@ const readTotalByMonth = async (data) => {
 module.exports = {
   readLogs,
   readTotalByMonth,
+  deleteLog,
 };

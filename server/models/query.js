@@ -26,6 +26,7 @@ const logQuery = {
   readSumTotal: `SELECT sum(price) as total, kind FROM transaction_log
     WHERE userId = ? AND YEAR(logDate) = ? AND MONTH(logDate) = ?
     GROUP BY kind;`,
+  delete: 'DELETE FROM transaction_log WHERE userId = ? AND logId = ?;',
 };
 
 module.exports = {
