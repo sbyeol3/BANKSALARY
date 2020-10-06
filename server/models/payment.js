@@ -14,7 +14,15 @@ const readPayMethod = async (id) => {
   return rows;
 };
 
+const deletePayMethod = async (data) => {
+  const { userId, code } = data;
+  const query = paymentQuery.delete;
+  const [rows] = await pool.execute(query, [userId, code]);
+  return rows;
+};
+
 module.exports = {
   createPayMethod,
   readPayMethod,
+  deletePayMethod,
 };

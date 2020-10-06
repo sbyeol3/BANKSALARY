@@ -4,8 +4,9 @@ const userQuery = {
 };
 
 const paymentQuery = {
-  create: `INSERT INTO USER_PAYMENT(userId, title) VALUES(?,?);`,
+  create: 'INSERT INTO USER_PAYMENT(userId, title) VALUES(?,?);',
   read: 'SELECT code, title FROM USER_PAYMENT WHERE userId = ?;',
+  delete: 'DELETE FROM USER_PAYMENT WHERE userId = ? AND code = ?;',
 };
 
 module.exports = {

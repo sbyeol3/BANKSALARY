@@ -22,3 +22,8 @@ exports.decodeToken = (req) => {
   const { authorization } = req.headers;
   return jwt.decode(authorization, process.env.JWT_SECRET_KEY);
 };
+
+exports.getParentCode = (code) => {
+  const codeToString = code.toString();
+  return +codeToString.substr(0, 3);
+};

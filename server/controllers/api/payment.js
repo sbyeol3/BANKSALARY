@@ -12,4 +12,13 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/:paymentId', async (req, res) => {
+  try {
+    await PaymentService.deletePayment(req, res);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: ERROR.internal });
+  }
+});
+
 module.exports = router;
