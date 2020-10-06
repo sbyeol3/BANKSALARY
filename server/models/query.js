@@ -3,6 +3,11 @@ const userQuery = {
   find: 'SELECT id, username FROM USER WHERE id=? AND username=?;',
 };
 
+const paymentQuery = {
+  create: 'INSERT INTO USER_PAYMENT(code, userId) VALUES(?,?);',
+};
+
 module.exports = {
   userQuery,
+  paymentQuery,
 };
