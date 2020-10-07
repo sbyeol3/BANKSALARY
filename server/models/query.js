@@ -14,6 +14,8 @@ const categoryQuery = {
 };
 
 const logQuery = {
+  create: `INSERT INTO transaction_log(kind, price, contents, logDate, userId, payment, ctgCode)
+    VALUES(?, ?, ?, ?, ?, ?, ?)`,
   read: `SELECT log.*, code.title as category FROM (
     (SELECT l.logId, l.kind, l.price, l.contents, l.logDate, l.payment as payCode,
       p.title as payment, l.ctgCode FROM (SELECT * FROM transaction_log

@@ -1,10 +1,24 @@
-const {
-  success: SUCCESS,
-  error: ERROR,
-  success,
-} = require('../services/serverMsg');
+const { success: SUCCESS, error: ERROR } = require('../services/serverMsg');
 const logModel = require('../models/log');
-const { isValidMonth } = require('./util');
+const {
+  CATEGORY_OUT,
+  CATEGORY_IN,
+  PAYMENT_METHOD,
+} = require('../models/code.json');
+const { isValidMonth, getParentCode, isValidDate } = require('./util');
+
+const checkTypeValidation = (data) => {
+  const { kind, price, contents, ctgCode, payment, logDate } = data;
+  const ctgParentCode = kind === 0 ? CATEGORY_OUT : CATEGORY_IN;
+
+  if (kind !== 0 && kind !== 1) return false;
+  if (typeof price !== 'number') return false;
+  if (typeof contents !== 'string' || typeof logDate !== 'string') return false;
+  if (getParentCode(ctgCode) !== ctgParentCode) return false;
+  if (kind === 0 && getParentCode(payment) !== PAYMENT_METHOD) return false;
+  if (!isValidDate(logDate)) return false;
+  return true;
+};
 
 const read = async (req, res, method = 'read') => {
   const { id } = req.user;
@@ -24,6 +38,22 @@ const read = async (req, res, method = 'read') => {
   });
 };
 
+const create = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const data = req.body;
+    const valid = checkTypeValidation(data);
+    if (!valid) return res.status(400).json({ message: ERROR.invalidRequest });
+    const { affectedRows } = await logModel.create({ userId: id, ...data });
+    if (affectedRows) {
+      return res.status(200).json({ message: SUCCESS.create });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(422).json({ message: ERROR.unprocessable });
+  }
+};
+
 const deleteLog = async (req, res) => {
   const { id } = req.user;
   const { logId } = req.params;
@@ -32,10 +62,11 @@ const deleteLog = async (req, res) => {
   if (!affectedRows) {
     return res.status(422).json({ message: ERROR.unprocessable });
   }
-  return res.status(200).json({ message: success.delete });
+  return res.status(200).json({ message: SUCCESS.delete });
 };
 
 module.exports = {
   read,
+  create,
   deleteLog,
 };

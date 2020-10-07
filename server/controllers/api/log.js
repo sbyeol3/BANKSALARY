@@ -12,6 +12,15 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    await LogService.create(req, res);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: ERROR.internal });
+  }
+});
+
 router.delete('/:logId', async (req, res) => {
   try {
     await LogService.deleteLog(req, res);

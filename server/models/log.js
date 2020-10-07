@@ -1,6 +1,22 @@
 const pool = require('./index');
 const { logQuery } = require('./query');
 
+const create = async (data) => {
+  const { userId, kind, price, contents, ctgCode, payment, logDate } = data;
+  const query = logQuery.create;
+  const paymentCode = kind === 0 ? payment : null;
+  const [rows] = await pool.execute(query, [
+    kind,
+    price,
+    contents,
+    logDate,
+    userId,
+    paymentCode,
+    ctgCode,
+  ]);
+  return rows;
+};
+
 const readLogs = async (data) => {
   const { userId, year, month } = data;
   const query = logQuery.read;
@@ -24,6 +40,7 @@ const deleteLog = async (data) => {
 };
 
 module.exports = {
+  create,
   readLogs,
   readTotalByMonth,
   deleteLog,
