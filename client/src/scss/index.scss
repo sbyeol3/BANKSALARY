@@ -1,0 +1,73 @@
+@import './color.scss';
+
+button {
+    border: none;
+}
+
+body {
+    margin: 0;
+    background-color: $lightgray;
+    color: $black;
+}
+
+.color {
+    color: $main;
+}
+
+// nav-bar
+
+#nav {
+    margin-bottom: 30px;
+    padding: 22px 30px;
+    background-color: $main;
+    box-shadow: 3px 0 8px 2px rgba($gray, 0.6);
+    color: $white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+// login form
+#login {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    margin: 120px auto 0 auto;
+    padding: 50px 30px;
+    border: 1px solid $border;
+    background-color: $white;
+
+    & .title {
+        margin-bottom: 30px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    & input {
+        margin: 5px 0;
+        padding: 16px 14px;
+        border: 1px solid $border;
+        border-radius: 2px;
+        outline: none;
+        background-color: $lightgray;
+        font-size: 17px;
+        &:focus {
+            border: 1px solid $main;
+            background-color: rgba($main, 0.1);
+        }
+        &::placeholder {
+            font-size: 17px;
+            color: $gray;
+        }
+    }
+
+    & #login-btn {
+        margin-top: 15px;
+        padding: 15px 0;
+        background-color: $main;
+        border-radius: 2px;
+        color: $white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}

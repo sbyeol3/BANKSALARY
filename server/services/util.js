@@ -31,3 +31,9 @@ exports.getParentCode = (code) => {
 exports.isValidMonth = (month) => {
   return month > 0 && month < 13;
 };
+
+exports.isValidDate = (date) => {
+  const parsedDate = Date.parse(date);
+  if (isNaN(parsedDate)) return false;
+  return true;
+};
