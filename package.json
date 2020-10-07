@@ -4,6 +4,7 @@
   "description": "> 스프린트 5-6주차 웹 프로젝트 - 가계부",
   "main": "index.js",
   "scripts": {
+    "deploy": "cd ./client && npm run build && cp ./dist/* ../server/public && cd ../server && pm2 start ./bin/www ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
