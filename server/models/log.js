@@ -31,6 +31,32 @@ const readTotalByMonth = async (data) => {
   return rows;
 };
 
+const update = async (data) => {
+  const {
+    userId,
+    kind,
+    price,
+    contents,
+    ctgCode,
+    payment,
+    logDate,
+    logId,
+  } = data;
+  const query = logQuery.update;
+  const paymentCode = kind === 0 ? payment : null;
+  const [rows] = await pool.execute(query, [
+    kind,
+    price,
+    contents,
+    logDate,
+    paymentCode,
+    ctgCode,
+    logId,
+    userId,
+  ]);
+  return rows;
+};
+
 const deleteLog = async (data) => {
   const { userId, logId } = data;
   const query = logQuery.delete;
@@ -43,5 +69,6 @@ module.exports = {
   create,
   readLogs,
   readTotalByMonth,
+  update,
   deleteLog,
 };

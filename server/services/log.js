@@ -54,6 +54,28 @@ const create = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const { logId } = req.params;
+    const data = req.body;
+    const valid = checkTypeValidation(data);
+    if (!valid) return res.status(400).json({ message: ERROR.invalidRequest });
+    const { affectedRows } = await logModel.update({
+      userId: id,
+      logId,
+      ...data,
+    });
+    if (!affectedRows) {
+      return res.status(422).json({ message: ERROR.unprocessable });
+    }
+    return res.status(200).json({ message: SUCCESS.create });
+  } catch (err) {
+    console.log(err);
+    return res.status(422).json({ message: ERROR.unprocessable });
+  }
+};
+
 const deleteLog = async (req, res) => {
   const { id } = req.user;
   const { logId } = req.params;
@@ -68,5 +90,6 @@ const deleteLog = async (req, res) => {
 module.exports = {
   read,
   create,
+  update,
   deleteLog,
 };

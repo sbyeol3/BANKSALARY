@@ -28,6 +28,8 @@ const logQuery = {
   readSumTotal: `SELECT sum(price) as total, kind FROM transaction_log
     WHERE userId = ? AND YEAR(logDate) = ? AND MONTH(logDate) = ?
     GROUP BY kind;`,
+  update: `UPDATE transaction_log SET kind=?, price=?, contents=?, logDate=?, payment=?, ctgCode=?
+    WHERE logId=? AND userId=?;`,
   delete: 'DELETE FROM transaction_log WHERE userId = ? AND logId = ?;',
 };
 
