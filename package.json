@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "deploy": "cd ./client && npm run build && cp ./dist/* ../server/public && cd ../server && pm2 start ./bin/www ",
+    "reload": "cd ./client && npm run build && cp ./dist/* ../server/public",
+    "dev": "cd ./client && npm run build && cp ./dist/* ../server/public && cd ../server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
