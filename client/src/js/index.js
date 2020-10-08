@@ -1,8 +1,8 @@
 import request from './util/api';
 import action from './store/action';
 import store from './store/store';
-import authelement from './elements/auth';
-import { doc } from 'prettier';
+import $AUTH from './elements/auth';
+import * as authEvent from './event/auth';
 
 class Main {
   constructor() {
@@ -10,16 +10,20 @@ class Main {
   }
 
   initialize() {
-    this.initializeEvent();
     this.initializeRedering();
   }
 
-  initializeEvent() {}
+  initializeEvent(isLoggedIn) {
+    isLoggedIn ? '' : authEvent.handleLogin();
+  }
+
   initializeRedering() {
     if (store.auth.isLoggedIn) {
-      //
+      document.body.innerHTML = $AUTH.NAVBAR;
+      this.initializeEvent(true);
     } else {
-      document.body.insertAdjacentHTML('afterend', authelement.LOGIN);
+      document.body.innerHTML = $AUTH.NAVBAR + $AUTH.LOGIN;
+      this.initializeEvent(false);
     }
   }
 }

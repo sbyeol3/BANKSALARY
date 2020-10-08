@@ -1,6 +1,7 @@
 const store = {
   auth: {
-    token: null,
+    token: localStorage.getItem('token'),
+    isLoggedIn: localStorage.getItem('token') ? true : false,
   },
 };
 
