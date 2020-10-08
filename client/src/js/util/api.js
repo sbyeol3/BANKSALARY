@@ -1,6 +1,4 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const request = async (config) => {
   try {
@@ -10,13 +8,32 @@ const request = async (config) => {
       method,
       data,
     });
-    const { status, data: resBody } = response;
-    if (status !== 200) return [status, resBody];
-    return [200, resBody.data];
+    const { status } = response;
+    if (status !== 200) return errorHadler(response);
+    return successHadler(response);
   } catch (err) {
     console.log(err);
     return null;
   }
+};
+
+const successHadler = (response) => {
+  const { status, data } = response;
+  return {
+    success: true,
+    status,
+    data,
+  };
+};
+
+const errorHadler = (response) => {
+  const { status, data } = response;
+  console.log(data.message);
+  return {
+    success: false,
+    status,
+    data,
+  };
 };
 
 export default request;
