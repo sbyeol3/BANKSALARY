@@ -15,5 +15,9 @@
         "es6": true,
         "node": true,
         "mocha": true
+    },
+    "globals": {
+        "localStorage": true,
+        "document": true
     }
 }
