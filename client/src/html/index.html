@@ -6,6 +6,90 @@
     <title>Account Book</title>
 </head>
 <body>
-    <nav id='nav'>💰 뱅크샐러리에 오신 것을 환영합니다 ✨</nav>
+    <!-- <nav id='nav'>💰 뱅크샐러리에 오신 것을 환영합니다 ✨</nav> -->
+    <nav id='nav' class='transaction'>
+        <span class='nav-title'>가계부</span>
+        <button id='payemnt-config' class='payment-btn btn'>⚙️ 결제수단 관리</button>
+    </nav>
+    <article class='account'>
+        <span id='month' class='month-section'>
+            <button id='month-before' class='month-btn'>◀︎</button>
+            <span id='month-val' class='text'>6월</span>
+            <button id='month-after' class='month-btn'>▶︎</button>
+        </span>
+        <div id='tab' class='tab-section'>
+            <span class='each-tab selected'>내역</span>
+            <span class='each-tab'>달력</span>
+            <span class='each-tab'>통계</span>
+        </div>
+        <div class='form-section'>
+            <form id='log-form' class='log-form'>
+                <fieldset class='inputs radios'>
+                    <label class='label' for='kind'>분류</label>
+                    <input type='radio' name='kind' class='radio-input'>수입
+                    <input type='radio' name='kind' class='radio-input'>지출
+                </fieldset>
+                <fieldset class='inputs'>
+                    <label class='label'>날짜</label>
+                    <input type='text' name='logDate' class='txt-input'>
+                    <label class='label' for='category'>카테고리</label>
+                    <select nmae='category' class='select'>
+                        <option>선택하세요</option>
+                    </select>
+                    <label class='label' for='payment'>결제수단</label>
+                    <select nmae='payment' class='select'>
+                        <option>선택하세요</option>
+                    </select>
+                </fieldset>
+                <fieldset class='inputs'>
+                    <label class='label' for='price'>금액</label>
+                    <input type='text' name='price' class='txt-input'>
+                    <label class='label' for='contents'>내용</label>
+                    <input type='text' name='contents' class='txt-input contents'>
+                </fieldset>
+                <button id='log-submit' class='btn'>확인</button>
+            </form>
+        </div>
+        <div class='breakdown'>
+            <div class='total-sum'>
+                <div class='select'>
+                    <input type='checkbox' name='incomings' class='checkbox in'>
+                    <label for='incomings' class='in text'>
+                        <span class='sum-label'>수입</span>
+                        <span id='in-sum' class='sum'>2,750,000원</span>
+                    </label>
+                </div>
+                <div class='select'>
+                    <input type='checkbox' name='outgoings' class='checkbox out'>
+                    <label for='outgoings' class='out text'>
+                        <span class='sum-label'>지출</span>
+                        <span id='out-sum' class='sum'>16,000원</span>
+                    </label>
+                </div>
+            </div>
+            <div class='log-rows'>
+                <div class='day-log'>
+                    <div class='day-desc'>
+                        <span class='date'>6월 16일</span>
+                        <span class='day'>화</span>
+                        <span class='in'>+0원</span>
+                        <span class='out'>-26,000원</span>
+                    </div>
+                    <div class='log-row'>
+                        <span class='category'>쇼핑/뷰티</span>
+                        <span class='contents'>미용실</span>
+                        <span class='payment'>현대카드</span>
+                        <span class='price'>-20,000원</span>
+                    </div>
+                    <div class='log-row'>
+                        <span class='category'>쇼핑/뷰티</span>
+                        <span class='contents'>미용실</span>
+                        <span class='payment'>카카오페이</span>
+                        <span class='price'>-20,000원</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
 </body>
 </html>

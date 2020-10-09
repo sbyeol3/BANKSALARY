@@ -2,6 +2,7 @@
 
 button {
     border: none;
+    border-radius: 2px;
 }
 
 body {
@@ -17,12 +18,31 @@ body {
 // nav-bar
 
 #nav {
+    box-sizing: border-box;
+    position: relative;
+    width: 100vw;
     padding: 22px 30px;
     background-color: $main;
     box-shadow: 3px 0 8px 2px rgba($gray, 0.6);
     color: $white;
     font-size: 20px;
     font-weight: 600;
+    &.transaction {
+        text-align: center;
+        & .nav-title {
+            font-size: 24px;
+        }
+        & .payment-btn {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            padding: 4px;
+            background-color: rgba($white, 0.1);
+            color: $darkMain;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
 }
 
 // login form
@@ -69,7 +89,6 @@ body {
         margin-top: 15px;
         padding: 15px 0;
         background-color: $main;
-        border-radius: 2px;
         color: $white;
         font-size: 18px;
         cursor: pointer;
