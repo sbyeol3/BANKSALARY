@@ -1,10 +1,19 @@
 import store from '../store/store';
+import reducer from '../store/reducer';
+import {
+  setInCategories,
+  setOutCategories,
+  setPayments,
+} from '../store/action';
 import request from '../util/api';
 
 class LogInput {
   constructor(parentElement) {
     this.parentElement = parentElement;
     this.addEvent(this.parentElement);
+    this.getInCategories();
+    this.getOutCategories();
+    this.getPaymentMethods();
   }
 
   addEvent(parentElement) {
@@ -16,14 +25,44 @@ class LogInput {
 
   onClick(e) {}
 
-  async getPaymentMethods() {
+  async getInCategories() {
     const config = {
-      uri: '/payment',
+      uri: '/api/category/0',
       method: 'GET',
     };
-    const response = await request(config);
+    const { success, data: body } = await request(config);
+    if (success) {
+      const { data } = body;
+      console.log(data);
+      reducer(setInCategories(data));
+    }
   }
-  async getCategories() {}
+
+  async getOutCategories() {
+    const config = {
+      uri: '/api/category/1',
+      method: 'GET',
+    };
+    const { success, data: body } = await request(config);
+    if (success) {
+      const { data } = body;
+      console.log(data);
+      reducer(setOutCategories(data));
+    }
+  }
+
+  async getPaymentMethods() {
+    const config = {
+      uri: '/api/payment',
+      method: 'GET',
+    };
+    const { success, data: body } = await request(config);
+    if (success) {
+      const { data } = body;
+      console.log(data);
+      reducer(setPayments(data));
+    }
+  }
 
   getHtml() {
     return `
