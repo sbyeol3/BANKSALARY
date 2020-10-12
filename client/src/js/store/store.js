@@ -3,6 +3,7 @@ const store = {
     token: localStorage.getItem('token'),
     isLoggedIn: localStorage.getItem('token') ? true : false,
   },
+
   logInput: {
     kind: 0,
     date: null,
@@ -10,6 +11,14 @@ const store = {
     category: null,
     payment: null,
     contents: null,
+  },
+
+  select: {
+    category: {
+      in: [],
+      out: [],
+    },
+    payment: [],
   },
 };
 
