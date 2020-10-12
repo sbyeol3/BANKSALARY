@@ -20,7 +20,7 @@ const signin = (req, res, next) => {
         return res.status(500).json({ message: ERROR.internal });
       }
       const { id, username } = user;
-      const token = jwt.sign({ id, username }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id, username }, process.env.JWT_SECRET_KEY);
       return res.status(200).json({ message: SUCCESS.signin, token });
     });
   })(req, res, next);
