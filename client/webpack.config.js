@@ -2,6 +2,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlInlineCSSPlugin = require('html-inline-css-webpack-plugin').default;
 
 module.exports = {
   mode: 'development',
@@ -32,6 +33,7 @@ module.exports = {
       filename: 'style.css',
     }),
     new Dotenv(),
+    new HtmlInlineCSSPlugin(),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

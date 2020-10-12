@@ -34,10 +34,11 @@ body {
         }
         & .payment-btn {
             position: absolute;
-            right: 12px;
+            right: 20px;
             bottom: 12px;
-            padding: 4px;
-            background-color: rgba($white, 0.1);
+            padding: 4px 8px;
+            background-color: $white;
+            border-radius: 7px;
             color: $darkMain;
             font-size: 15px;
             cursor: pointer;
