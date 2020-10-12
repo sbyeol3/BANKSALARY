@@ -4,8 +4,10 @@ import {
   setInCategories,
   setOutCategories,
   setPayments,
+  setLogInput,
 } from '../store/action';
 import request from '../util/api';
+import inputType from '../util/inputType';
 
 class LogInput {
   constructor(parentElement) {
@@ -29,14 +31,20 @@ class LogInput {
 
   onChange(e) {
     const { target } = e;
-    if (target.name === 'kind') {
+    const { name, value } = target;
+    this.updateInputs(name, value);
+
+    if (name === 'kind') {
       const value = +target.value;
       this.changeCtgOptions(value);
       this.changePayOptions(value);
     }
   }
 
-  onClick(e) {}
+  onClick(e) {
+    const { target } = e;
+    if (target.id === 'log-input') return this.postLogForm(store.logInput);
+  }
 
   addOptions(type) {
     if (type === 'IN') {
@@ -120,13 +128,38 @@ class LogInput {
     }
   }
 
+  async postLogForm(data) {
+    const config = {
+      uri: '/api/log',
+      method: 'POST',
+      data,
+    };
+    const { success, data: body } = await request(config);
+    if (success) {
+      const { data } = body;
+      console.log(data);
+      location.reload();
+    }
+  }
+
+  updateInputs(name, value) {
+    const valueType = inputType[name];
+    if (!valueType) return;
+    const convertedVal = valueType === Number ? +value : value;
+    reducer(setLogInput(name, convertedVal));
+  }
+
+  clearInputs() {
+    /* TODO : form input reset */
+  }
+
   getHtml() {
     return `
       <div class='form-section'>
             <form id='log-form' class='log-form'>
                 <fieldset class='inputs radios'>
                     <label class='label' for='kind'>분류</label>
-                    <input type='radio' name='kind' value=1 class='radio-input' selected >수입
+                    <input type='radio' name='kind' value=1 class='radio-input'>수입
                     <input type='radio' name='kind' value=0 class='radio-input'>지출
                 </fieldset>
                 <fieldset class='inputs'>

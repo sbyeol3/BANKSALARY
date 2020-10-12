@@ -27,3 +27,10 @@ export const setPayments = (payments) => {
     payload: payments,
   };
 };
+
+export const setLogInput = (name, value) => {
+  return {
+    type: types.SET_LOG_INPUT,
+    payload: { name, value },
+  };
+};

@@ -35,6 +35,13 @@ const reducer = (action) => {
         payment: [...payload],
       });
     }
+    case types.SET_LOG_INPUT: {
+      const { name, value } = payload;
+      return (store.logInput = {
+        ...store.logInput,
+        [name]: value,
+      });
+    }
   }
 };
 
