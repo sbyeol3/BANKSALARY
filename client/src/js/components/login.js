@@ -1,7 +1,7 @@
 import request from '../util/api';
 import reducer from '../store/reducer';
 import { setAuthToken } from '../store/action';
-import $AUTH from './elements/auth';
+import $AUTH from '../elements/auth';
 
 class Login {
   constructor() {
@@ -61,6 +61,7 @@ class Login {
       } else {
         const { token } = submitResult;
         reducer(setAuthToken(token));
+        location.reload();
       }
     }
   }

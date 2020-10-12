@@ -1,6 +1,6 @@
 import store from './store/store';
-import $AUTH from './elements/auth';
 import Login from './components/login';
+import AccountBook from './components/accountBook';
 
 class Main {
   constructor() {
@@ -15,8 +15,8 @@ class Main {
 
   initializeRedering() {
     if (store.auth.isLoggedIn) {
-      document.body.innerHTML = $AUTH.NAVBAR;
-      this.initializeEvent(true);
+      const accountBook = new AccountBook();
+      accountBook.insertHtml();
     } else {
       const login = new Login();
       login.initializeEvent();
