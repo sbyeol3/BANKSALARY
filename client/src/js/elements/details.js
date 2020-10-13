@@ -2,7 +2,7 @@ import { getDay } from '../util/util';
 
 export default {
   details: (inner) => `
-    <div class='breakdown'>
+    <div id='details' class='breakdown'>
         ${inner}
     </div>`,
   totalSum: (data) => {

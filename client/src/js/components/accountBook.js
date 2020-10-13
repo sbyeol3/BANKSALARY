@@ -46,15 +46,19 @@ class AccountBook {
   }
 
   removeAllChildNodes() {
+    const deletedId = ['form', 'details'];
     [...this.element.childNodes].map((node) => {
       const { id } = node;
-      if (id === 'form') this.element.removeChild(node);
+      if (deletedId.includes(id)) this.element.removeChild(node);
     });
   }
 
   render(tab = 0) {
     this.removeAllChildNodes();
-    if (tab === 0) return this.logInput.render();
+    if (tab === 0) {
+      this.logInput.render();
+      this.details.render();
+    }
   }
 }
 
