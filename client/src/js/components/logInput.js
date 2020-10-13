@@ -144,6 +144,8 @@ class LogInput {
     this.getInCategories();
     this.getOutCategories();
     this.getPaymentMethods();
+    this.parentElement.innerHTML += this.getHtml();
+    this.element = document.getElementById('form');
   }
 }
 
