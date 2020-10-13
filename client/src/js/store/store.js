@@ -11,7 +11,6 @@ const store = {
 
   logInput: {
     kind: 1,
-    date: null,
     price: 0,
     category: null,
     payment: null,

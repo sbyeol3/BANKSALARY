@@ -2,7 +2,7 @@ const pool = require('./index');
 const { logQuery } = require('./query');
 
 const create = async (data) => {
-  const { userId, kind, price, contents, ctgCode, payment, logDate } = data;
+  const { userId, kind, price, contents, category, payment, logDate } = data;
   const query = logQuery.create;
   const paymentCode = kind === 0 ? payment : null;
   const [rows] = await pool.execute(query, [
@@ -12,7 +12,7 @@ const create = async (data) => {
     logDate,
     userId,
     paymentCode,
-    ctgCode,
+    category,
   ]);
   return rows;
 };

@@ -13,7 +13,7 @@ const {
 } = require('./util');
 
 const checkTypeValidation = (data) => {
-  const { kind, price, contents, ctgCode, payment, logDate } = data;
+  const { kind, price, contents, category: ctgCode, payment, logDate } = data;
   const ctgParentCode = kind === 0 ? CATEGORY_OUT : CATEGORY_IN;
 
   if (kind !== 0 && kind !== 1) return false;
@@ -43,7 +43,6 @@ const convertFormatLogs = (logs) => {
     if (value) logsByDate.set(date, [...value, log]);
     else logsByDate.set(date, [log]);
   });
-  console.log(logsByDate);
   return logsByDate;
 };
 

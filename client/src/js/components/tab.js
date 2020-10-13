@@ -1,5 +1,5 @@
 import store from '../store/store';
-import $TAB from '../elements/tab';
+import $TAB from '../elements/common';
 
 const tabValue = {
   breakdown: 0,

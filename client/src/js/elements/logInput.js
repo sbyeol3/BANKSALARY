@@ -26,7 +26,7 @@ export default {
                 <label class='label' for='contents'>내용</label>
                 <input type='text' name='contents' class='txt-input contents'>
             </fieldset>
-            <button id='log-submit' class='btn'>확인</button>
+            <button type='button' id='log-submit' class='btn'>확인</button>
         </form>
     </div>
   `,

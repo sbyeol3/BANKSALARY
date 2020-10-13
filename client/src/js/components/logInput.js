@@ -25,7 +25,7 @@ class LogInput {
 
   addEvent(parentElement) {
     parentElement.addEventListener('change', this.onChange.bind(this));
-    parentElement.addEventListener('change', this.onClick.bind(this));
+    parentElement.addEventListener('click', this.onClick.bind(this));
   }
 
   onChange(e) {
@@ -42,7 +42,9 @@ class LogInput {
 
   onClick(e) {
     const { target } = e;
-    if (target.id === 'log-input') return this.postLogForm(store.logInput);
+    if (target.id === 'log-submit') {
+      return this.postLogForm(store.logInput);
+    }
   }
 
   addOptions(type) {
@@ -59,7 +61,7 @@ class LogInput {
 
   changeCtgOptions(kind) {
     const selectElement = document.getElementById('ctg-select');
-    const type = kind ? 'in' : 'out';
+    const type = kind ? 'out' : 'in';
     selectElement.innerHTML = this.selectOptions[type];
   }
 
