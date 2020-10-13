@@ -2,12 +2,13 @@ import store from './store';
 import types from './types';
 
 const reducer = (action) => {
+  console.log(action);
   const { type, payload } = action;
   switch (type) {
     case types.SET_TAB_VALUE: {
-      return (store.auth = {
-        ...store.auth,
-        token: payload,
+      return (store.account = {
+        ...store.account,
+        tab: payload,
       });
     }
     case types.SET_AUTH_TOKEN: {
