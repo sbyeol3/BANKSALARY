@@ -14,23 +14,23 @@ const categoryQuery = {
 };
 
 const logQuery = {
-  create: `INSERT INTO transaction_log(kind, price, contents, logDate, userId, payment, ctgCode)
+  create: `INSERT INTO TRANSACTION_LOG(kind, price, contents, logDate, userId, payment, ctgCode)
     VALUES(?, ?, ?, ?, ?, ?, ?)`,
   read: `SELECT log.*, code.title as category FROM (
     (SELECT l.logId, l.kind, l.price, l.contents, l.logDate, l.payment as payCode,
-      p.title as payment, l.ctgCode FROM (SELECT * FROM transaction_log
+      p.title as payment, l.ctgCode FROM (SELECT * FROM TRANSACTION_LOG
       WHERE userId = ? AND logDate AND YEAR(logDate) = ? AND MONTH(logDate) = ? ) as l
-    LEFT JOIN user_payment p ON l.payment=p.code
+    LEFT JOIN USER_PAYMENT p ON l.payment=p.code
     ORDER BY l.logDate)
     ) as log INNER JOIN codetable code
     ON log.ctgCode=code.code;
     ;`,
-  readSumTotal: `SELECT sum(price) as total, kind FROM transaction_log
+  readSumTotal: `SELECT sum(price) as total, kind FROM TRANSACTION_LOG
     WHERE userId = ? AND YEAR(logDate) = ? AND MONTH(logDate) = ?
     GROUP BY kind;`,
   update: `UPDATE transaction_log SET kind=?, price=?, contents=?, logDate=?, payment=?, ctgCode=?
     WHERE logId=? AND userId=?;`,
-  delete: 'DELETE FROM transaction_log WHERE userId = ? AND logId = ?;',
+  delete: 'DELETE FROM TRANSACTION_LOG WHERE userId = ? AND logId = ?;',
 };
 
 module.exports = {
