@@ -4,6 +4,11 @@ const store = {
     isLoggedIn: localStorage.getItem('token') ? true : false,
   },
 
+  account: {
+    month: new Date().getMonth + 1,
+    tab: 0,
+  },
+
   logInput: {
     kind: 1,
     date: null,

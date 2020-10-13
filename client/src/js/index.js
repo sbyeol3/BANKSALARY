@@ -1,6 +1,8 @@
 import store from './store/store';
 import Login from './components/login';
 import AccountBook from './components/accountBook';
+import reducer from './store/reducer';
+import { removeAuthToken } from './store/action';
 
 class Main {
   constructor() {
@@ -9,9 +11,12 @@ class Main {
 
   initialize() {
     this.initializeRedering();
+    this.initializeEvent();
   }
 
-  initializeEvent() {}
+  initializeEvent() {
+    document.body.addEventListener('click', this.onClickLogout.bind(this));
+  }
 
   initializeRedering() {
     if (store.auth.isLoggedIn) {
@@ -20,6 +25,14 @@ class Main {
     } else {
       const login = new Login();
       login.initializeEvent();
+    }
+  }
+
+  onClickLogout(e) {
+    const { target } = e;
+    if (target.id === 'logout') {
+      reducer(removeAuthToken());
+      this.initializeRedering();
     }
   }
 }

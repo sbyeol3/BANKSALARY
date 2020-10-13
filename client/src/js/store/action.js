@@ -1,9 +1,23 @@
 import types from './types';
 
+export const setTabValue = (value) => {
+  return {
+    type: types.SET_TAB_VALUE,
+    payload: value,
+  };
+};
+
 export const setAuthToken = (value) => {
   return {
     type: types.SET_AUTH_TOKEN,
     payload: value,
+  };
+};
+
+export const removeAuthToken = () => {
+  return {
+    type: types.REMOVE_AUTH_TOKEN,
+    payload: null,
   };
 };
 

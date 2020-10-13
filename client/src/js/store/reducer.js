@@ -4,11 +4,25 @@ import types from './types';
 const reducer = (action) => {
   const { type, payload } = action;
   switch (type) {
+    case types.SET_TAB_VALUE: {
+      return (store.auth = {
+        ...store.auth,
+        token: payload,
+      });
+    }
     case types.SET_AUTH_TOKEN: {
       localStorage.setItem('token', payload);
       return (store.auth = {
         ...store.auth,
         token: payload,
+      });
+    }
+    case types.REMOVE_AUTH_TOKEN: {
+      localStorage.removeItem('token');
+      return (store.auth = {
+        ...store.auth,
+        token: null,
+        isLoggedIn: false,
       });
     }
     case types.SET_IN_CATEGORIES: {
