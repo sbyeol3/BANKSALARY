@@ -10,7 +10,6 @@ const tabValue = {
 class Tab {
   constructor(parentElement) {
     this.parentElement = parentElement;
-    this.render();
     this.state = store.account;
     this.elements = document.getElementsByClassName('each-tab');
   }

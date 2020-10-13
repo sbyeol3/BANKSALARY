@@ -1,6 +1,7 @@
 import PaymentModal from './paymentModal';
 import Tab from './tab';
 import LogInput from './logInput';
+import Details from './details';
 import { setTabValue } from '../store/action';
 import reducer from '../store/reducer';
 import store from '../store/store';
@@ -16,6 +17,7 @@ class AccountBook {
     this.element = document.createElement('article');
     this.tab = new Tab(this.element);
     this.logInput = new LogInput(this.element);
+    this.details = new Details(this.element);
     this.modal = new PaymentModal();
     this.addEvent();
   }
