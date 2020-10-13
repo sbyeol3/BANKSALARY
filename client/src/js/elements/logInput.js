@@ -1,7 +1,7 @@
 export default {
   defaultOption: '<option selected disabled>선택하세요</option>',
   logForm: `
-  <div class='form-section'>
+  <div id='form' class='form-section'>
         <form id='log-form' class='log-form'>
             <fieldset class='inputs radios'>
                 <label class='label' for='kind'>분류</label>

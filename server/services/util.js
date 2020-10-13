@@ -37,3 +37,13 @@ exports.isValidDate = (date) => {
   if (isNaN(parsedDate)) return false;
   return true;
 };
+
+exports.convertDateToStr = (date) => {
+  const padInDate = (num) => {
+    return num < 10 ? `0${num}` : `${num}`;
+  };
+  const year = date.getFullYear();
+  const month = padInDate(date.getMonth() + 1);
+  const day = padInDate(date.getDate());
+  return `${year}-${month}-${day}`;
+};

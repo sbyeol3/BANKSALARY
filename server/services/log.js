@@ -5,7 +5,12 @@ const {
   CATEGORY_IN,
   PAYMENT_METHOD,
 } = require('../models/code.json');
-const { isValidMonth, getParentCode, isValidDate } = require('./util');
+const {
+  isValidMonth,
+  getParentCode,
+  isValidDate,
+  convertDateToStr,
+} = require('./util');
 
 const checkTypeValidation = (data) => {
   const { kind, price, contents, ctgCode, payment, logDate } = data;
@@ -20,6 +25,28 @@ const checkTypeValidation = (data) => {
   return true;
 };
 
+const convertFormatSum = (total) => {
+  const sum = { 0: 0, 1: 0 };
+  total.map((data) => {
+    const { kind, total } = data;
+    return (sum[kind] = +total);
+  });
+  return sum;
+};
+
+const convertFormatLogs = (logs) => {
+  const logsByDate = new Map();
+  logs.map((log) => {
+    const { logDate } = log;
+    const date = convertDateToStr(logDate);
+    const value = logsByDate.get(date);
+    if (value) logsByDate.set(date, [...value, log]);
+    else logsByDate.set(date, [log]);
+  });
+  console.log(logsByDate);
+  return logsByDate;
+};
+
 const read = async (req, res, method = 'read') => {
   const { id } = req.user;
   const { year = 2020, month } = req.query;
@@ -29,11 +56,14 @@ const read = async (req, res, method = 'read') => {
   const passedParams = { userId: id, year, month };
   const data = await logModel.readLogs(passedParams);
   const total = await logModel.readTotalByMonth(passedParams);
+  const sum = convertFormatSum(total);
+  const logs = convertFormatLogs(data);
+
   return res.status(200).json({
     message: SUCCESS[method],
     data: {
-      logs: [...data],
-      sum: [...total],
+      logs: [...logs],
+      sum,
     },
   });
 };

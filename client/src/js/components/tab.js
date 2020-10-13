@@ -1,6 +1,4 @@
 import store from '../store/store';
-import { setTabValue } from '../store/action';
-import reducer from '../store/reducer';
 import $TAB from '../elements/tab';
 
 const tabValue = {
@@ -28,8 +26,6 @@ class Tab {
   getHtml() {
     return $TAB.tab;
   }
-
-  render() {}
 }
 
 export default Tab;
