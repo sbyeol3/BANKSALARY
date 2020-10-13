@@ -48,3 +48,17 @@ export const setLogInput = (name, value) => {
     payload: { name, value },
   };
 };
+
+export const setLogData = (value) => {
+  return {
+    type: types.SET_LOG_DATA,
+    payload: value,
+  };
+};
+
+export const setTotalSum = (value) => {
+  return {
+    type: types.SET_TOTAL_SUM,
+    payload: value,
+  };
+};

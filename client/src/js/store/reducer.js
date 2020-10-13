@@ -57,6 +57,22 @@ const reducer = (action) => {
         [name]: value,
       });
     }
+    case types.SET_LOG_DATA: {
+      return (store.details = {
+        ...store.details,
+        logs: [...payload],
+      });
+    }
+    case types.SET_TOTAL_SUM: {
+      return (store.details = {
+        ...store.details,
+        sum: {
+          ...store.details.sum,
+          incomings: payload[0],
+          outgoings: payload[1],
+        },
+      });
+    }
   }
 };
 

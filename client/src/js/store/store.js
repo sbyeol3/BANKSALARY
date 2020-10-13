@@ -5,7 +5,7 @@ const store = {
   },
 
   account: {
-    month: new Date().getMonth + 1,
+    month: 10,
     tab: 0,
   },
 
@@ -24,6 +24,14 @@ const store = {
       out: [],
     },
     payment: [],
+  },
+
+  details: {
+    logs: [],
+    total: {
+      incomings: 0,
+      outgoings: 0,
+    },
   },
 };
 
