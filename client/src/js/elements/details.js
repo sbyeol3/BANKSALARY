@@ -1,3 +1,5 @@
+import { getDay } from '../util/util';
+
 export default {
   details: (inner) => `
     <div class='breakdown'>
@@ -33,23 +35,24 @@ export default {
     `,
   dayDesc: (data) => {
     const { date, incomings, outgoings } = data;
+    const day = getDay(date);
     return `
             <div class='day-desc'>
                 <span class='date'>${date}</span>
-                <span class='day'>화</span>
+                <span class='day'>${day}</span>
                 <span class='in'>+${incomings}원</span>
                 <span class='out'>-${outgoings}원</span>
             </div>
         `;
   },
   logRow: (data) => {
-    const { category, contents, payment, price } = data;
+    const { category, contents, payment, price, kind } = data;
     return `
             <div class='log-row'>
-                <span class='category'>쇼핑/뷰티</span>
+                <span class='category'>${category}</span>
                 <span class='contents'>${contents}</span>
-                <span class='payment'>카카오페이</span>
-                <span class='price'>-${price}원</span>
+                <span class='payment'>${payment}</span>
+                <span class='price'>${kind ? '+' : '-'}${price}원</span>
             </div>
         `;
   },
