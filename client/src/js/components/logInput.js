@@ -8,6 +8,7 @@ import {
 } from '../store/action';
 import request from '../util/api';
 import inputType from '../util/inputType';
+import $LOGINPUT from '../elements/logInput';
 
 class LogInput {
   constructor(parentElement) {
@@ -16,7 +17,7 @@ class LogInput {
       in: '',
       out: '',
       pay: '',
-      default: '<option selected disabled>선택하세요</option>',
+      default: $LOGINPUT.defaultOption,
     };
     this.addEvent(this.parentElement);
     this.getInCategories();
@@ -47,31 +48,15 @@ class LogInput {
   }
 
   addOptions(type) {
-    if (type === 'IN') {
-      const { in: inCategories } = store.select.category;
-      const options = inCategories.reduce((prev, category) => {
-        const { code, title } = category;
-        const element = `<option value=${code}>${title}</option>`;
-        return prev + element;
-      }, '<option selected disabled>선택하세요</option>');
-      this.selectOptions.in = options;
-    } else if (type === 'OUT') {
-      const { out: outCategories } = store.select.category;
-      const options = outCategories.reduce((prev, category) => {
-        const { code, title } = category;
-        const element = `<option value=${code}>${title}</option>`;
-        return prev + element;
-      }, '<option selected disabled>선택하세요</option>');
-      this.selectOptions.out = options;
-    } else {
-      const { payment: payments } = store.select;
-      const options = payments.reduce((prev, payment) => {
-        const { code, title } = payment;
-        const element = `<option value=${code}>${title}</option>`;
-        return prev + element;
-      }, '<option selected disabled>선택하세요</option>');
-      this.selectOptions.pay = options;
-    }
+    if (this.selectOptions[type] === undefined) return;
+    const dataCollections =
+      type === 'pay' ? store.select.payment : store.select.category[type];
+    const options = dataCollections.reduce((prev, row) => {
+      const { code, title } = row;
+      const element = `<option value=${code}>${title}</option>`;
+      return prev + element;
+    }, '<option selected disabled>선택하세요</option>');
+    this.selectOptions[type] = options;
   }
 
   changeCtgOptions(kind) {
@@ -96,7 +81,7 @@ class LogInput {
       const { data } = body;
       console.log(data);
       reducer(setInCategories(data));
-      this.addOptions('IN');
+      this.addOptions('in');
     }
   }
 
@@ -110,7 +95,7 @@ class LogInput {
       const { data } = body;
       console.log(data);
       reducer(setOutCategories(data));
-      this.addOptions('OUT');
+      this.addOptions('out');
     }
   }
 
@@ -124,7 +109,7 @@ class LogInput {
       const { data } = body;
       console.log(data);
       reducer(setPayments(data));
-      this.addOptions('PAY');
+      this.addOptions('pay');
     }
   }
 
@@ -154,36 +139,7 @@ class LogInput {
   }
 
   getHtml() {
-    return `
-      <div class='form-section'>
-            <form id='log-form' class='log-form'>
-                <fieldset class='inputs radios'>
-                    <label class='label' for='kind'>분류</label>
-                    <input type='radio' name='kind' value=1 class='radio-input'>수입
-                    <input type='radio' name='kind' value=0 class='radio-input'>지출
-                </fieldset>
-                <fieldset class='inputs'>
-                    <label class='label'>날짜</label>
-                    <input type='text' name='logDate' class='txt-input'>
-                    <label class='label' for='category'>카테고리</label>
-                    <select id='ctg-select' name='category' class='select'>
-                        <option selected disabled>선택하세요</option>
-                    </select>
-                    <label class='label' for='payment'>결제수단</label>
-                    <select id='pay-select' name='payment' class='select'>
-                        <option selected disabled>선택하세요</option>
-                    </select>
-                </fieldset>
-                <fieldset class='inputs'>
-                    <label class='label' for='price'>금액</label>
-                    <input type='text' name='price' class='txt-input'>
-                    <label class='label' for='contents'>내용</label>
-                    <input type='text' name='contents' class='txt-input contents'>
-                </fieldset>
-                <button id='log-submit' class='btn'>확인</button>
-            </form>
-        </div>
-      `;
+    return $LOGINPUT.logForm;
   }
 }
 

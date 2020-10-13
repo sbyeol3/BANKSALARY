@@ -13,12 +13,11 @@ const request = async (config) => {
       method,
       data,
     });
-    const { status } = response;
-    if (status !== 200) return errorHadler(response);
     return successHadler(response);
   } catch (err) {
     console.log(err);
-    return null;
+    const { response } = err;
+    return errorHadler(response);
   }
 };
 

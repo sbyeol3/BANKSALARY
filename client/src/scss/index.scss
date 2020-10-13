@@ -19,29 +19,28 @@ body {
 
 #nav {
     box-sizing: border-box;
-    position: relative;
     width: 100vw;
-    padding: 22px 30px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
     background-color: $main;
     box-shadow: 3px 0 8px 2px rgba($gray, 0.6);
     color: $white;
     font-size: 20px;
     font-weight: 600;
-    &.transaction {
-        text-align: center;
-        & .nav-title {
-            font-size: 24px;
-        }
-        & .payment-btn {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            padding: 4px 8px;
-            background-color: $white;
-            border-radius: 7px;
-            color: $darkMain;
-            font-size: 15px;
-            cursor: pointer;
+    .nav-title {
+        font-size: 24px;
+    }
+    .btn {
+        padding: 4px 10px;
+        background-color: $white;
+        border-radius: 7px;
+        color: $darkMain;
+        font-size: 15px;
+        cursor: pointer;
+        &.payment-btn {
+            margin-left: auto;
+            margin-right: 10px;
         }
     }
 }
