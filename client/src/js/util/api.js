@@ -3,13 +3,14 @@ import store from '../store/store';
 
 const request = async (config) => {
   try {
-    const { uri, method, data } = config;
+    const { uri, method, data, params } = config;
     const { token } = store.auth;
     const response = await axios({
       url: process.env.BASE_URL + uri,
       headers: {
         Authorization: token,
       },
+      params,
       method,
       data,
     });
