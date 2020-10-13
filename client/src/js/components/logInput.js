@@ -20,9 +20,7 @@ class LogInput {
       default: $LOGINPUT.defaultOption,
     };
     this.addEvent(this.parentElement);
-    this.getInCategories();
-    this.getOutCategories();
-    this.getPaymentMethods();
+    this.render();
   }
 
   addEvent(parentElement) {
@@ -55,7 +53,7 @@ class LogInput {
       const { code, title } = row;
       const element = `<option value=${code}>${title}</option>`;
       return prev + element;
-    }, '<option selected disabled>선택하세요</option>');
+    }, $LOGINPUT.defaultOption);
     this.selectOptions[type] = options;
   }
 
@@ -140,6 +138,12 @@ class LogInput {
 
   getHtml() {
     return $LOGINPUT.logForm;
+  }
+
+  render() {
+    this.getInCategories();
+    this.getOutCategories();
+    this.getPaymentMethods();
   }
 }
 
