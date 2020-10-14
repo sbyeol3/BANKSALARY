@@ -33,9 +33,21 @@ const logQuery = {
   delete: 'DELETE FROM TRANSACTION_LOG WHERE userId = ? AND logId = ?;',
 };
 
+const statisticsQuery = {
+  readCount: `SELECT count(logId) as count FROM TRANSACTION_LOG
+    WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0;`,
+  readByCategory: `SELECT ctg.title, log.* FROM (
+    SELECT ctgCode, count(ctgCode) AS count FROM TRANSACTION_LOG
+    WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0
+    GROUP BY ctgCode) AS log
+    LEFT JOIN CODETABLE ctg ON log.ctgCode = ctg.code;`,
+  readByDate: '',
+};
+
 module.exports = {
   userQuery,
   paymentQuery,
   categoryQuery,
   logQuery,
+  statisticsQuery,
 };
