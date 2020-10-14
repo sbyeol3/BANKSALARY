@@ -11,7 +11,8 @@ class Month {
   }
 
   render() {
-    this.parentElement.innerHTML += '<div>ddd</div>';
+    const { month } = store.account;
+    document.getElementById('month-val').innerHTML = `${month}월`;
   }
 }
 

@@ -8,7 +8,7 @@ export default {
   totalSum: (data) => {
     const { incomings, outgoings } = data;
     return `
-        <div class='total-sum'>
+        <div id='total' class='total-sum'>
             <div class='select'>
                 <input type='checkbox' name='incomings' class='checkbox in'>
                 <label for='incomings' class='in text'>

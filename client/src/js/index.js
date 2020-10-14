@@ -21,7 +21,7 @@ class Main {
   initializeRedering() {
     if (store.auth.isLoggedIn) {
       const accountBook = new AccountBook();
-      accountBook.insertHtml();
+      accountBook.initialzeHTML();
     } else {
       const login = new Login();
       login.initializeEvent();

@@ -7,6 +7,7 @@ import $DETAILS from '../elements/details';
 class Details {
   constructor(parentElement) {
     this.parentElement = parentElement;
+    this.renderTotalSum();
     this.render();
   }
 

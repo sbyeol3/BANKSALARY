@@ -3,7 +3,7 @@ import PaymentModal from './paymentModal';
 import Tab from './tab';
 import LogInput from './logInput';
 import Details from './details';
-import { setTabValue } from '../store/action';
+import { setTabValue, setMonth } from '../store/action';
 import reducer from '../store/reducer';
 import store from '../store/store';
 
@@ -34,10 +34,12 @@ class AccountBook {
 
   onClickMonth(e) {
     const { target } = e;
-    if (target.id === 'month-before') {
-      //
-    } else if (target.id === 'month-after') {
-      //
+    const { month, tab } = store.account;
+    if (target.id === 'month-before' || target.id === 'month-after') {
+      const newMonth = target.id === 'month-before' ? month - 1 : month + 1;
+      reducer(setMonth(newMonth));
+      this.month.render();
+      this.render(tab);
     }
   }
 
@@ -62,7 +64,7 @@ class AccountBook {
   }
 
   removeAllChildNodes() {
-    const deletedId = ['form', 'details'];
+    const deletedId = ['form', 'details', 'total'];
     [...this.element.childNodes].forEach((node) => {
       const { id } = node;
       if (deletedId.includes(id)) this.element.removeChild(node);

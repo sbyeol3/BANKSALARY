@@ -7,6 +7,13 @@ export const setTabValue = (value) => {
   };
 };
 
+export const setMonth = (value) => {
+  return {
+    type: types.SET_MONTH,
+    payload: value,
+  };
+};
+
 export const setAuthToken = (value) => {
   return {
     type: types.SET_AUTH_TOKEN,
