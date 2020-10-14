@@ -72,10 +72,10 @@ const reducer = (action) => {
     case types.SET_TOTAL_SUM: {
       return (store.details = {
         ...store.details,
-        sum: {
-          ...store.details.sum,
-          incomings: payload[0],
-          outgoings: payload[1],
+        total: {
+          ...store.details.total,
+          incomings: payload[1],
+          outgoings: payload[0],
         },
       });
     }
