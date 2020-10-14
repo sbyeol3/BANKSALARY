@@ -1,4 +1,4 @@
-import { getDay } from '../util/util';
+import { getDay, convertFormatPrice } from '../util/util';
 
 export default {
   details: (inner) => `
@@ -34,26 +34,27 @@ export default {
         </div>
     `,
   dayDesc: (data) => {
-    const { date, incomings, outgoings } = data;
+    const { date, total } = data;
     const day = getDay(date);
     return `
             <div class='day-desc'>
                 <span class='date'>${date}</span>
                 <span class='day'>${day}</span>
-                <span class='in'>+${incomings}원</span>
-                <span class='out'>-${outgoings}원</span>
+                <span class='in'>+${convertFormatPrice(total[1])}원</span>
+                <span class='out'>-${convertFormatPrice(total[0])}원</span>
             </div>
         `;
   },
   logRow: (data) => {
     const { category, contents, payment, price, kind } = data;
+    const sign = kind ? '+' : '-';
     return `
-            <div class='log-row'>
-                <span class='category'>${category}</span>
-                <span class='contents'>${contents}</span>
-                <span class='payment'>${payment}</span>
-                <span class='price'>${kind ? '+' : '-'}${price}원</span>
-            </div>
-        `;
+        <div class='log-row'>
+            <span class='category'>${category}</span>
+            <span class='contents'>${contents}</span>
+            <span class='payment'>${payment}</span>
+            <span class='price'>${sign}${convertFormatPrice(price)}원</span>
+        </div>
+    `;
   },
 };

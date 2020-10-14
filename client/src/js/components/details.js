@@ -39,8 +39,9 @@ class Details {
   getHtml() {
     const { details } = store;
     const logRows = details.logs.reduce((prev, data) => {
-      const [date, logs] = data;
-      const dayElement = $DETAILS.dayDesc({ date });
+      const [date, value] = data;
+      const { total, logs } = value;
+      const dayElement = $DETAILS.dayDesc({ date, total });
       const logsElement = this.getDayLogsHtml(logs);
       return prev + $DETAILS.row(dayElement + logsElement);
     }, '');

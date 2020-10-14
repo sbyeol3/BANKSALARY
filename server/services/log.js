@@ -39,10 +39,16 @@ const convertFormatSum = (total) => {
 const convertFormatLogs = (logs) => {
   const logsByDate = new Map();
   logs.forEach((log) => {
-    const { logDate } = log;
+    const { logDate, price, kind } = log;
     const date = convertDateToStr(logDate);
-    const value = logsByDate.get(date) || [];
-    logsByDate.set(date, [...value, log]);
+    const value = logsByDate.get(date) || { total: { 0: 0, 1: 0 }, logs: [] };
+    logsByDate.set(date, {
+      total: {
+        ...value.total,
+        [kind]: value.total[kind] + price,
+      },
+      logs: [...value.logs, log],
+    });
   });
   return logsByDate;
 };
