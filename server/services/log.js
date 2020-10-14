@@ -27,7 +27,7 @@ const checkTypeValidation = (data) => {
 
 const convertFormatSum = (total) => {
   const sum = { 0: 0, 1: 0 };
-  total.map((data) => {
+  total.forEach((data) => {
     const { kind, total } = data;
     return (sum[kind] = +total);
   });
@@ -36,7 +36,7 @@ const convertFormatSum = (total) => {
 
 const convertFormatLogs = (logs) => {
   const logsByDate = new Map();
-  logs.map((log) => {
+  logs.forEach((log) => {
     const { logDate } = log;
     const date = convertDateToStr(logDate);
     const value = logsByDate.get(date);

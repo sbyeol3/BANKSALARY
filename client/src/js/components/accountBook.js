@@ -1,3 +1,4 @@
+import Month from './month';
 import PaymentModal from './paymentModal';
 import Tab from './tab';
 import LogInput from './logInput';
@@ -15,6 +16,8 @@ const tabValue = {
 class AccountBook {
   constructor() {
     this.element = document.createElement('article');
+    this.element.classList.add('account');
+    this.month = new Month(this.element);
     this.tab = new Tab(this.element);
     this.logInput = new LogInput(this.element);
     this.details = new Details(this.element);
@@ -47,7 +50,7 @@ class AccountBook {
 
   removeAllChildNodes() {
     const deletedId = ['form', 'details'];
-    [...this.element.childNodes].map((node) => {
+    [...this.element.childNodes].forEach((node) => {
       const { id } = node;
       if (deletedId.includes(id)) this.element.removeChild(node);
     });

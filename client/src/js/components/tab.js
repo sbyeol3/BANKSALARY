@@ -15,7 +15,7 @@ class Tab {
   }
 
   changeSelectedTab(tabVal) {
-    [...this.elements].map((element) => {
+    [...this.elements].forEach((element) => {
       const { name } = element.dataset;
       if (tabValue[name] === tabVal) element.classList.add('selected');
       else element.classList.remove('selected');
