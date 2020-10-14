@@ -42,6 +42,7 @@ class LogInput {
 
   onClick(e) {
     const { target } = e;
+    //
     if (target.id === 'log-submit') {
       return this.postLogForm(store.logInput);
     }

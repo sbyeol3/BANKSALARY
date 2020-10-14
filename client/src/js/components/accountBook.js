@@ -26,7 +26,19 @@ class AccountBook {
   }
 
   addEvent() {
-    this.element.addEventListener('click', this.onClick.bind(this));
+    this.element.addEventListener('click', (e) => {
+      this.onClick(e);
+      this.onClickMonth(e);
+    });
+  }
+
+  onClickMonth(e) {
+    const { target } = e;
+    if (target.id === 'month-before') {
+      //
+    } else if (target.id === 'month-after') {
+      //
+    }
   }
 
   onClick(e) {
@@ -41,10 +53,11 @@ class AccountBook {
     this.render(tabVal);
   }
 
-  insertHtml() {
-    const logInputElement = this.logInput.getHtml();
+  initialzeHTML() {
+    const monthElement = this.month.getHtml();
     const tabElement = this.tab.getHtml();
-    this.element.innerHTML = tabElement + logInputElement;
+    const logInputElement = this.logInput.getHtml();
+    this.element.innerHTML = monthElement + tabElement + logInputElement;
     document.body.insertAdjacentElement('beforeend', this.element);
   }
 

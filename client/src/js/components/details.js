@@ -10,7 +10,7 @@ class Details {
     this.render();
   }
 
-  async getInCategories() {
+  async getTransactionLogs() {
     const config = {
       uri: '/api/log',
       method: 'GET',
@@ -23,6 +23,10 @@ class Details {
       reducer(setLogData(logs));
       reducer(setTotalSum(sum));
     }
+  }
+
+  getSumHtml() {
+    return $DETAILS.totalSum(store.details.total);
   }
 
   getDayLogsHtml(logs) {
@@ -43,8 +47,13 @@ class Details {
   }
 
   async render() {
-    await this.getInCategories();
+    await this.getTransactionLogs();
+    this.renderTotalSum();
     this.parentElement.innerHTML += this.getHtml();
+  }
+
+  renderTotalSum() {
+    this.parentElement.innerHTML += this.getSumHtml();
   }
 }
 
