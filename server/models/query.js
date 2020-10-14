@@ -22,7 +22,7 @@ const logQuery = {
       WHERE userId = ? AND logDate AND YEAR(logDate) = ? AND MONTH(logDate) = ? ) as l
     LEFT JOIN USER_PAYMENT p ON l.payment=p.code
     ORDER BY l.logDate)
-    ) as log INNER JOIN codetable code
+    ) as log INNER JOIN CODETABLE code
     ON log.ctgCode=code.code;
     ;`,
   readSumTotal: `SELECT sum(price) as total, kind FROM TRANSACTION_LOG
