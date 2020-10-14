@@ -81,7 +81,7 @@
 
 ## Log ⭕️
 
-- GET `/api/log?year=:year&month=:month` | 트랜잭션 내역 조회 (조회연도/월 params)
+- GET `/api/log?year=:year&month=:month` | 트랜잭션 내역 조회 (조회연도/월 query)
   - `200` 성공
   - `400` year는 기본값 2020, month값이 없거나 valid하지 않은 경우
   - `401` 헤더 토큰 누락
@@ -101,9 +101,13 @@
   - `401` 헤더 토큰 누락
   - `422` 삭제하고자 하는 데이터가 존재하지 않거나 사용자의 내역이 아닌 경우
 
-## Statistics ⛔️
+## Statistics ⭕️
 
-- GET `/api/statistics/category?year=:year&month=:month` | 카테고리별 지출내역 조회 (조회연도/월 params)
+- GET `/api/statistics/category?year=:year&month=:month` | 카테고리별 지출내역 조회 (조회연도/월 query)
+  - `200` 성공
+  - `400` year는 기본값 2020, month값이 없거나 valid하지 않은 경우
+  - `401` 헤더 토큰 누락
+- GET `/api/statistics/date?year=:year&month=:month` | 일자별 지출내역 조회 (조회연도/월 query)
   - `200` 성공
   - `400` year는 기본값 2020, month값이 없거나 valid하지 않은 경우
   - `401` 헤더 토큰 누락

@@ -34,14 +34,16 @@ const logQuery = {
 };
 
 const statisticsQuery = {
-  readCount: `SELECT count(logId) as count FROM TRANSACTION_LOG
+  readCount: `SELECT count(logId) as total, sum(price) as sum FROM TRANSACTION_LOG
     WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0;`,
   readByCategory: `SELECT ctg.title, log.* FROM (
     SELECT ctgCode, count(ctgCode) AS count FROM TRANSACTION_LOG
     WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0
     GROUP BY ctgCode) AS log
     LEFT JOIN CODETABLE ctg ON log.ctgCode = ctg.code;`,
-  readByDate: '',
+  readByDate: `SELECT sum(price) AS price FROM TRANSACTION_LOG
+    WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0 
+    GROUP BY logDate;`,
 };
 
 module.exports = {

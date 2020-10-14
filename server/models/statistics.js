@@ -5,8 +5,9 @@ const readTotalCount = async (data) => {
   const { year, month, userId } = data;
   const query = statisticsQuery.readCount;
   const [rows] = await pool.execute(query, [year, month, userId]);
-  if (!rows || rows.length === 0) return 0;
-  return rows[0].count || 0;
+  if (!rows || rows.length === 0) return { total: 0, sum: 0 };
+  const { total, sum } = rows[0];
+  return { total, sum: +sum };
 };
 
 const readCategories = async (data) => {

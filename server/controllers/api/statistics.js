@@ -14,7 +14,7 @@ router.get('/category', async (req, res) => {
 
 router.get('/date', async (req, res) => {
   try {
-    await StatisticsService.readCategories(req, res);
+    await StatisticsService.readDates(req, res);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: ERROR.internal });
