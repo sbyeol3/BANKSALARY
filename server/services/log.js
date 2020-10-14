@@ -26,12 +26,14 @@ const checkTypeValidation = (data) => {
 };
 
 const convertFormatSum = (total) => {
-  const sum = { 0: 0, 1: 0 };
-  total.forEach((data) => {
-    const { kind, total } = data;
-    return (sum[kind] = +total);
-  });
-  return sum;
+  return total.reduce(
+    (prev, data) => {
+      const { kind, total } = data;
+      prev[kind] = total;
+      return prev;
+    },
+    { 0: 0, 1: 0 }
+  );
 };
 
 const convertFormatLogs = (logs) => {
@@ -39,9 +41,8 @@ const convertFormatLogs = (logs) => {
   logs.forEach((log) => {
     const { logDate } = log;
     const date = convertDateToStr(logDate);
-    const value = logsByDate.get(date);
-    if (value) logsByDate.set(date, [...value, log]);
-    else logsByDate.set(date, [log]);
+    const value = logsByDate.get(date) || [];
+    logsByDate.set(date, [...value, log]);
   });
   return logsByDate;
 };
