@@ -13,6 +13,12 @@ const tabValue = {
   statistics: 2,
 };
 
+const detailsValue = {
+  onlyIn: 0,
+  onlyOut: 1,
+  all: 2,
+};
+
 class AccountBook {
   constructor() {
     this.element = document.createElement('article');
@@ -22,6 +28,7 @@ class AccountBook {
     this.logInput = new LogInput(this.element);
     this.details = new Details(this.element);
     this.modal = new PaymentModal();
+    this.detailsNumber = detailsValue.all;
     this.addEvent();
   }
 
@@ -30,6 +37,7 @@ class AccountBook {
       this.onClick(e);
       this.onClickMonth(e);
     });
+    this.element.addEventListener('change', (e) => this.onChangeCheckBox(e));
   }
 
   onClickMonth(e) {
@@ -55,6 +63,26 @@ class AccountBook {
     this.render(tabVal);
   }
 
+  onChangeCheckBox(e) {
+    const { target } = e;
+    const { name } = target;
+    if (name === 'incomings') {
+      const val =
+        this.detailsNumber === detailsValue.all
+          ? detailsValue.onlyOut
+          : detailsValue.all;
+      this.detailsNumber = val;
+      this.render(0, this.detailsNumber);
+    } else if (name === 'outgoings') {
+      const val =
+        this.detailsNumber === detailsValue.all
+          ? detailsValue.onlyIn
+          : detailsValue.all;
+      this.detailsNumber = val;
+      this.render(0, this.detailsNumber);
+    }
+  }
+
   initialzeHTML() {
     const monthElement = this.month.getHtml();
     const tabElement = this.tab.getHtml();
@@ -71,11 +99,11 @@ class AccountBook {
     });
   }
 
-  render(tab = 0) {
+  render(tab = 0, checked = detailsValue.all) {
     this.removeAllChildNodes();
     if (tab === 0) {
       this.logInput.render();
-      this.details.render();
+      this.details.render(checked);
     }
   }
 }

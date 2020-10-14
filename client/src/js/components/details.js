@@ -26,36 +26,38 @@ class Details {
     }
   }
 
-  getSumHtml() {
-    return $DETAILS.totalSum(store.details.total);
+  getSumHtml(detailsValue) {
+    return $DETAILS.totalSum(store.details.total, detailsValue);
   }
 
-  getDayLogsHtml(logs) {
+  getDayLogsHtml(logs, detailsValue) {
     return logs.reduce((prev, log) => {
+      const { kind } = log;
+      if (detailsValue === kind) return prev;
       return prev + $DETAILS.logRow(log);
     }, '');
   }
 
-  getHtml() {
+  getHtml(detailsValue) {
     const { details } = store;
     const logRows = details.logs.reduce((prev, data) => {
       const [date, value] = data;
       const { total, logs } = value;
       const dayElement = $DETAILS.dayDesc({ date, total });
-      const logsElement = this.getDayLogsHtml(logs);
+      const logsElement = this.getDayLogsHtml(logs, detailsValue);
       return prev + $DETAILS.row(dayElement + logsElement);
     }, '');
     return $DETAILS.details(logRows);
   }
 
-  async render() {
+  async render(detailsValue = 2) {
     await this.getTransactionLogs();
-    this.renderTotalSum();
-    this.parentElement.innerHTML += this.getHtml();
+    this.renderTotalSum(detailsValue);
+    this.parentElement.innerHTML += this.getHtml(detailsValue);
   }
 
-  renderTotalSum() {
-    this.parentElement.innerHTML += this.getSumHtml();
+  renderTotalSum(detailsValue) {
+    this.parentElement.innerHTML += this.getSumHtml(detailsValue);
   }
 }
 

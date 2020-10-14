@@ -1,16 +1,23 @@
 import { getDay, convertFormatPrice } from '../util/util';
 
+const details = {
+  onlyIn: 0,
+  onlyOut: 1,
+  all: 2,
+};
+
 export default {
   details: (inner) => `
     <div id='details' class='breakdown'>
         ${inner}
     </div>`,
-  totalSum: (data) => {
+  totalSum: (data, detailsValue) => {
     const { incomings, outgoings } = data;
     return `
         <div id='total' class='total-sum'>
             <div class='select'>
-                <input type='checkbox' name='incomings' class='checkbox in'>
+                <input type='checkbox' name='incomings' class='checkbox in'
+                    ${detailsValue === details.onlyOut ? '' : 'checked'}>
                 <label for='incomings' class='in text'>
                     <span class='sum-label'>수입</span>
                     <span id='in-sum' class='sum'>
@@ -19,7 +26,8 @@ export default {
                 </label>
             </div>
             <div class='select'>
-                <input type='checkbox' name='outgoings' class='checkbox out'>
+                <input type='checkbox' name='outgoings' class='checkbox out'
+                    ${detailsValue === details.onlyIn ? '' : 'checked'}>
                 <label for='outgoings' class='out text'>
                     <span class='sum-label'>지출</span>
                     <span id='out-sum' class='sum'>
