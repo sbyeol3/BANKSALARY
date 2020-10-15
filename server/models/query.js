@@ -47,10 +47,22 @@ const statisticsQuery = {
     GROUP BY logDate;`,
 };
 
+const monthlyQuery = {
+  readOutgoings: `SELECT sum(price) AS outgoings, DAY(logDate) AS day
+  FROM TRANSACTION_LOG
+  WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0 
+  GROUP BY logDate;`,
+  readIncomings: `SELECT sum(price) AS incomings, DAY(logDate) AS day
+  FROM TRANSACTION_LOG
+  WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=1 
+  GROUP BY logDate;`,
+};
+
 module.exports = {
   userQuery,
   paymentQuery,
   categoryQuery,
   logQuery,
+  monthlyQuery,
   statisticsQuery,
 };
