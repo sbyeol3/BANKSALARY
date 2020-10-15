@@ -18,7 +18,7 @@ const readCategories = async (req, res) => {
     const { count } = row;
     const added = {
       ...row,
-      percent: (count / total) * 100,
+      percent: Math.round((count / total) * 100),
     };
     return [...prev, added];
   }, []);
