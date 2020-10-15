@@ -15,9 +15,10 @@ const readCategories = async (req, res) => {
     userId: id,
   });
   const addedPercent = data.reduce((prev, row) => {
-    const { count } = row;
+    const { count, sum } = row;
     const added = {
       ...row,
+      sum: +sum,
       percent: Math.round((count / total) * 100),
     };
     return [...prev, added];

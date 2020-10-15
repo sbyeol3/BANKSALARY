@@ -36,8 +36,8 @@ const logQuery = {
 const statisticsQuery = {
   readCount: `SELECT count(logId) as total, sum(price) as sum FROM TRANSACTION_LOG
     WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0;`,
-  readByCategory: `SELECT ctg.title, log.* FROM (
-    SELECT ctgCode, count(ctgCode) AS count FROM TRANSACTION_LOG
+  readByCategory: `SELECT ctg.title, log.*, log.sum FROM (
+    SELECT ctgCode, count(ctgCode) AS count, sum(price) AS sum FROM TRANSACTION_LOG
     WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0
     GROUP BY ctgCode) AS log
     LEFT JOIN CODETABLE ctg ON log.ctgCode = ctg.code;`,
