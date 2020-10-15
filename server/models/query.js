@@ -41,7 +41,8 @@ const statisticsQuery = {
     WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0
     GROUP BY ctgCode) AS log
     LEFT JOIN CODETABLE ctg ON log.ctgCode = ctg.code;`,
-  readByDate: `SELECT sum(price) AS price FROM TRANSACTION_LOG
+  readByDate: `SELECT sum(price) AS price, DAY(logDate) AS day
+    FROM TRANSACTION_LOG
     WHERE YEAR(logDate)=? AND MONTH(logDate)=? AND userId=? AND kind=0 
     GROUP BY logDate;`,
 };

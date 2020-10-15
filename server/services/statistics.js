@@ -2,6 +2,15 @@ const { success: SUCCESS, error: ERROR } = require('../services/serverMsg');
 const { isValidMonth } = require('./util');
 const statModel = require('../models/statistics');
 
+const convertFullDays = (days, data) => {
+  const month = new Array(days).fill(0);
+  data.forEach((date) => {
+    const { day, price } = date;
+    month[day - 1] = +price;
+  });
+  return month;
+};
+
 const readCategories = async (req, res) => {
   const { id } = req.user;
   const { year = 2020, month } = req.query;
@@ -41,9 +50,12 @@ const readDates = async (req, res) => {
     month,
     userId: id,
   });
+  const days = new Date(year, month - 1, 0).getDate();
+  const avg = Math.round(sum / days);
+  const converted = convertFullDays(days, data);
   return res.status(200).json({
     message: SUCCESS.read,
-    data: { sum, dates: [...data] },
+    data: { sum, avg, length: days, dates: converted },
   });
 };
 
