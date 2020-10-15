@@ -94,7 +94,7 @@ class AccountBook {
   }
 
   removeAllChildNodes() {
-    const deletedId = ['form', 'details', 'total'];
+    const deletedId = ['form', 'details', 'total', 'statistics'];
     [...this.element.childNodes].forEach((node) => {
       const { id } = node;
       if (deletedId.includes(id)) this.element.removeChild(node);
