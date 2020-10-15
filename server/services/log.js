@@ -50,7 +50,7 @@ const convertFormatLogs = (logs) => {
       logs: [...value.logs, log],
     });
   });
-  return logsByDate;
+  return new Map([...logsByDate.entries()].sort());
 };
 
 const read = async (req, res, method = 'read') => {
