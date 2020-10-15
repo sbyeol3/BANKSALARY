@@ -31,4 +31,35 @@
     display: flex;
     justify-content: center;
     margin: 20px 0;
+    &.bar {
+        flex-direction: column;
+        border-top: 2px solid $border;
+    }
+}
+
+.bar-row {
+    position: relative;
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid $border;
+    font-size: 14px;
+    .percent {
+        position: absolute;
+        left: 70px;
+        margin: 0 15px;
+        color: $main;
+    }
+    .bar {
+        position: absolute;
+        left: 140px;
+        width: 250px;
+        height: 17px;
+        margin: 0 10px;
+        .fill {
+            background-color: $main;
+        }
+    }
+    .price {
+        margin-left: auto;
+    }
 }

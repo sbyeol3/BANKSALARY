@@ -186,7 +186,7 @@
 
 .day-log .log-row {
     border-top: 1px solid $border;
-    & .category {
+    .category {
         width: 80px;
         padding: 5px 0;
         background-color: $main;
@@ -195,16 +195,32 @@
         font-size: 14px;
         color: $white;
     }
-    & .contents {
+    .contents {
         width: 370px;
         margin-left: 10px;
     }
-    & .payment {
+    .payment {
         width: 100px;
         text-align: center;
     }
-    & .price {
+    .price {
         margin-left: auto;
         font-weight: 600;
+    }
+    .edit {
+        visibility: hidden;
+        position: absolute;
+        left: 50%;
+        padding: 4px 7px;
+        background-color: $gray;
+        border-radius: 10px;
+        font-size: 12px;
+        color: $white;
+        cursor: pointer;
+    }
+    &:hover {
+        .edit {
+            visibility: visible;
+        }
     }
 }

@@ -1,5 +1,4 @@
 import store from '../../store/store';
-import reducer from '../../store/reducer';
 import $STAT from '../../elements/statistics';
 
 class StatHeader {
@@ -8,7 +7,7 @@ class StatHeader {
   }
 
   getHTML() {
-    return $STAT.header();
+    return $STAT.header(store.statistics.total);
   }
 
   render() {

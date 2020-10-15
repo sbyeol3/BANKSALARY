@@ -58,7 +58,8 @@ export default {
         `;
   },
   logRow: (data) => {
-    const { category, contents, payment, price, kind } = data;
+    const { logId, logDate, category, contents, payment, price, kind } = data;
+    const date = logDate.substring(0, 10);
     const sign = kind ? '+' : '-';
     return `
         <div class='log-row'>
@@ -66,6 +67,7 @@ export default {
             <span class='contents'>${contents === 'null' ? '' : contents}</span>
             <span class='payment'>${kind === 1 ? '' : payment}</span>
             <span class='price'>${sign}${convertFormatPrice(price)}원</span>
+            <span id='edit-btn' class='edit' data-id=${logId} data-date=${date}>EDIT</span>
         </div>
     `;
   },

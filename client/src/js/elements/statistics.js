@@ -22,4 +22,16 @@ export default {
     '#026B48',
     '#01452E',
   ],
+  bar: (data) => {
+    const { title, percent, sum, color } = data;
+    return `
+    <div class='bar-row'>
+      <span class='category'>${title}</span>
+      <span class='percent'>${percent}%</span>
+      <div class='bar'  style='width:${
+        percent * 2.5
+      }px;background-color:${color}'></div>
+      <span class='price'>${convertFormatPrice(sum)}원</span>
+    </div>`;
+  },
 };

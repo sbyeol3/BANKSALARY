@@ -4,6 +4,7 @@ import reducer from '../../store/reducer';
 import request from '../../util/api';
 import StatHeader from './header';
 import PieChart from './pieChart';
+import BarChart from './barChart';
 
 const headerValue = {
   date: 0,
@@ -17,6 +18,7 @@ class Statistics {
     this.statHeader = new StatHeader(this.element);
     this.header = headerValue.category;
     this.pie = new PieChart(this.element);
+    this.bar = new BarChart(this.element);
     this.initializeEvent();
     this.initializeElement();
     this.getStatByDates();
@@ -80,6 +82,7 @@ class Statistics {
     this.parentElement.insertAdjacentElement('beforeend', this.element);
     if (this.header === headerValue.category) {
       this.pie.render();
+      this.bar.render();
     }
   }
 }

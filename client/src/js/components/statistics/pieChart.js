@@ -15,8 +15,8 @@ class PieChart {
     this.canvas = document.createElement('canvas');
     this.element.insertAdjacentElement('beforeend', this.canvas);
     this.canvas.classList.add('canvas');
-    this.canvas.width = 400;
-    this.canvas.height = 400;
+    this.canvas.width = 500;
+    this.canvas.height = 350;
     this.centerX = this.canvas.width / 2;
     this.centerY = this.canvas.height / 2;
     this.context = this.canvas.getContext('2d');
@@ -38,7 +38,7 @@ class PieChart {
       this.context.arc(
         this.centerX,
         this.centerY,
-        this.centerY - 100,
+        this.centerY - 50,
         prev * HALF_PIE,
         angle * HALF_PIE,
         false
@@ -51,8 +51,8 @@ class PieChart {
       const percentage = `${title} ${percent}%`;
       const textX =
         halfAngle > 60 && halfAngle < 240
-          ? this.centerX - 100
-          : this.centerX + 50;
+          ? this.centerX - 130
+          : this.centerX + 80;
       const textY =
         halfAngle > 140 && halfAngle < 320
           ? this.centerY + 10
