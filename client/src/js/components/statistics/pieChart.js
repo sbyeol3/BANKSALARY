@@ -28,7 +28,7 @@ class PieChart {
     console.log(categories);
     categories.reduce((prev, data, idx) => {
       const { title, percent } = data;
-      const angle = prev + 3.6 * percent;
+      const angle = idx === categories.length ? 360 : prev + 3.6 * percent;
 
       // draw pie
       const color = $STAT.color[idx % COLOR_NUM];
