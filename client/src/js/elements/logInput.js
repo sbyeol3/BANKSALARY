@@ -3,6 +3,7 @@ export default {
   logForm: `
   <div id='form' class='form-section'>
         <form id='log-form' class='log-form'>
+            <button type='button' id='reset'>입력 초기화</button>
             <fieldset class='inputs radios'>
                 <label class='label' for='kind'>분류</label>
                 <input type='radio' name='kind' value=1 class='radio-input'>수입

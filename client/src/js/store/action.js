@@ -56,6 +56,13 @@ export const setLogInput = (name, value) => {
   };
 };
 
+export const resetLogInput = () => {
+  return {
+    type: types.RESET_LOG_INPUT,
+    payload: null,
+  };
+};
+
 export const setLogData = (value) => {
   return {
     type: types.SET_LOG_DATA,

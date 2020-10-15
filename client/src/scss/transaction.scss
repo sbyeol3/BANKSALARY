@@ -58,9 +58,20 @@
 }
 
 .log-form {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    #reset {
+        position: absolute;
+        padding: 5px;
+        top: 10px;
+        right: 0;
+        background-color: $border;
+        font-size: 13px;
+        color: $dark;
+        cursor: pointer;
+    }
     & .radios {
         flex-direction: row;
         font-size: 14px;

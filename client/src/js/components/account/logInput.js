@@ -5,6 +5,7 @@ import {
   setOutCategories,
   setPayments,
   setLogInput,
+  resetLogInput,
 } from '../../store/action';
 import request from '../../util/api';
 import inputType from '../../util/inputType';
@@ -42,9 +43,12 @@ class LogInput {
 
   onClick(e) {
     const { target } = e;
-    //
     if (target.id === 'log-submit') {
-      return this.postLogForm(store.logInput);
+      this.postLogForm(store.logInput);
+    } else if (target.id === 'edit-btn') {
+      this.fillInputsByEdit(target.dataset);
+    } else if (target.id === 'reset') {
+      this.clearInputs();
     }
   }
 
@@ -132,8 +136,16 @@ class LogInput {
     reducer(setLogInput(name, convertedVal));
   }
 
+  fillInputsByEdit() {
+    /* TODO : fill form input */
+  }
+
   clearInputs() {
-    /* TODO : form input reset */
+    const inputElements = document.body.querySelectorAll('.txt-input');
+    const selectElements = document.body.querySelectorAll('select');
+    inputElements.forEach((input) => (input.value = ''));
+    selectElements.forEach((input) => (input.childNodes[0].selected = true));
+    reducer(resetLogInput());
   }
 
   getHtml() {

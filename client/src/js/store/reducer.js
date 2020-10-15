@@ -63,6 +63,15 @@ const reducer = (action) => {
         [name]: value,
       });
     }
+    case types.RESET_LOG_INPUT: {
+      return (store.logInput = {
+        kind: 1,
+        price: 0,
+        category: null,
+        payment: null,
+        contents: null,
+      });
+    }
     case types.SET_LOG_DATA: {
       return (store.details = {
         ...store.details,
