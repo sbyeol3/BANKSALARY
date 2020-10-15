@@ -45,7 +45,7 @@ const convertFormatLogs = (logs) => {
     logsByDate.set(date, {
       total: {
         ...value.total,
-        [kind]: value.total[kind] + price,
+        [kind]: value.total[kind] + +price,
       },
       logs: [...value.logs, log],
     });
