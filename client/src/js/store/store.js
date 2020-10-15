@@ -32,6 +32,12 @@ const store = {
       outgoings: 0,
     },
   },
+
+  statistics: {
+    total: 0,
+    byDate: [],
+    byCategory: [],
+  },
 };
 
 export default store;

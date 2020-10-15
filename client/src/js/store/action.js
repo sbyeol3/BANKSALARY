@@ -69,3 +69,17 @@ export const setTotalSum = (value) => {
     payload: value,
   };
 };
+
+export const setStatByCategory = (value) => {
+  return {
+    type: types.SET_STAT_CATEGORY,
+    payload: value,
+  };
+};
+
+export const setStatByDate = (value) => {
+  return {
+    type: types.SET_STAT_DATE,
+    payload: value,
+  };
+};

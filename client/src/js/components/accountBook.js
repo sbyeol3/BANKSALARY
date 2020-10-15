@@ -1,8 +1,9 @@
 import Month from './month';
 import PaymentModal from './paymentModal';
 import Tab from './tab';
-import LogInput from './logInput';
-import Details from './details';
+import LogInput from './account/logInput';
+import Details from './account/details';
+import Statistics from './statistics';
 import { setTabValue, setMonth } from '../store/action';
 import reducer from '../store/reducer';
 import store from '../store/store';
@@ -28,6 +29,7 @@ class AccountBook {
     this.logInput = new LogInput(this.element);
     this.details = new Details(this.element);
     this.modal = new PaymentModal();
+    this.statistics = new Statistics(this.element);
     this.detailsNumber = detailsValue.all;
     this.addEvent();
   }
@@ -104,6 +106,8 @@ class AccountBook {
     if (tab === 0) {
       this.logInput.render();
       this.details.render(checked);
+    } else if (tab === 2) {
+      this.statistics.render();
     }
   }
 }

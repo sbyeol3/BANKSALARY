@@ -79,6 +79,22 @@ const reducer = (action) => {
         },
       });
     }
+    case types.SET_STAT_DATE: {
+      const { sum, dates } = payload;
+      return (store.statistics = {
+        ...store.statistics,
+        total: sum,
+        byDate: [...dates],
+      });
+    }
+    case types.SET_STAT_CATEGORY: {
+      const { sum, categories } = payload;
+      return (store.statistics = {
+        ...store.statistics,
+        total: sum,
+        byCategory: [...categories],
+      });
+    }
   }
 };
 

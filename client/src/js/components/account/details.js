@@ -1,8 +1,8 @@
-import store from '../store/store';
-import reducer from '../store/reducer';
-import request from '../util/api';
-import { setLogData, setTotalSum } from '../store/action';
-import $DETAILS from '../elements/details';
+import store from '../../store/store';
+import reducer from '../../store/reducer';
+import request from '../../util/api';
+import { setLogData, setTotalSum } from '../../store/action';
+import $DETAILS from '../../elements/details';
 
 class Details {
   constructor(parentElement) {

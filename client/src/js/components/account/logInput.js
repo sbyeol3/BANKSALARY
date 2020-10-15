@@ -1,14 +1,14 @@
-import store from '../store/store';
-import reducer from '../store/reducer';
+import store from '../../store/store';
+import reducer from '../../store/reducer';
 import {
   setInCategories,
   setOutCategories,
   setPayments,
   setLogInput,
-} from '../store/action';
-import request from '../util/api';
-import inputType from '../util/inputType';
-import $LOGINPUT from '../elements/logInput';
+} from '../../store/action';
+import request from '../../util/api';
+import inputType from '../../util/inputType';
+import $LOGINPUT from '../../elements/logInput';
 
 class LogInput {
   constructor(parentElement) {
@@ -80,7 +80,6 @@ class LogInput {
     const { success, data: body } = await request(config);
     if (success) {
       const { data } = body;
-      console.log(data);
       reducer(setInCategories(data));
       this.addOptions('in');
     }
@@ -94,7 +93,6 @@ class LogInput {
     const { success, data: body } = await request(config);
     if (success) {
       const { data } = body;
-      console.log(data);
       reducer(setOutCategories(data));
       this.addOptions('out');
     }
@@ -108,7 +106,6 @@ class LogInput {
     const { success, data: body } = await request(config);
     if (success) {
       const { data } = body;
-      console.log(data);
       reducer(setPayments(data));
       this.addOptions('pay');
     }
