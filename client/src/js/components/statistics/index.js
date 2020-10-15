@@ -15,7 +15,7 @@ class Statistics {
     this.element = document.createElement('div');
     this.parentElement = parentElement;
     this.statHeader = new StatHeader(this.element);
-    this.header = headerValue.date;
+    this.header = headerValue.category;
     this.pie = new PieChart(this.element);
     this.initializeEvent();
     this.initializeElement();
@@ -36,9 +36,9 @@ class Statistics {
     const { target } = e;
     const { name } = target;
     if (name === 'date-stat') {
-      this.headerValue = headerValue.date;
+      this.header = headerValue.date;
     } else if (name === 'category-stat') {
-      this.headerValue = headerValue.category;
+      this.header = headerValue.category;
     }
   }
 
@@ -78,7 +78,9 @@ class Statistics {
     this.removeChildNodes();
     this.statHeader.render();
     this.parentElement.insertAdjacentElement('beforeend', this.element);
-    this.pie.render();
+    if (this.header === headerValue.category) {
+      this.pie.render();
+    }
   }
 }
 
