@@ -12,10 +12,11 @@ class Details {
   }
 
   async getTransactionLogs() {
+    const { year, month } = store.account;
     const config = {
       uri: '/api/log',
       method: 'GET',
-      params: { year: 2020, month: store.account.month },
+      params: { year, month },
     };
     const { success, data: body } = await request(config);
     if (success) {

@@ -4,7 +4,7 @@ import Tab from './tab';
 import LogInput from './account/logInput';
 import Details from './account/details';
 import Statistics from './statistics';
-import { setTabValue, setMonth } from '../store/action';
+import { setTabValue, setMonth, setYear } from '../store/action';
 import reducer from '../store/reducer';
 import store from '../store/store';
 
@@ -46,7 +46,15 @@ class AccountBook {
     const { target } = e;
     const { month, tab } = store.account;
     if (target.id === 'month-before' || target.id === 'month-after') {
-      const newMonth = target.id === 'month-before' ? month - 1 : month + 1;
+      const { year } = store.account;
+      let newMonth = target.id === 'month-before' ? month - 1 : month + 1;
+      if (newMonth === 0) {
+        newMonth = 12;
+        reducer(setYear(year - 1));
+      } else if (newMonth === 13) {
+        newMonth = 1;
+        reducer(setYear(year + 1));
+      }
       reducer(setMonth(newMonth));
       this.month.render();
       this.render(tab);

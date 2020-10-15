@@ -14,6 +14,13 @@ export const setMonth = (value) => {
   };
 };
 
+export const setYear = (value) => {
+  return {
+    type: types.SET_YEAR,
+    payload: value,
+  };
+};
+
 export const setAuthToken = (value) => {
   return {
     type: types.SET_AUTH_TOKEN,

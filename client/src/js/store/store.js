@@ -5,6 +5,7 @@ const store = {
   },
 
   account: {
+    year: 2020,
     month: 10,
     tab: 0,
   },

@@ -17,6 +17,12 @@ const reducer = (action) => {
         month: payload,
       });
     }
+    case types.SET_YEAR: {
+      return (store.account = {
+        ...store.account,
+        year: payload,
+      });
+    }
     case types.SET_AUTH_TOKEN: {
       localStorage.setItem('token', payload);
       return (store.auth = {
