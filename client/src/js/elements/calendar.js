@@ -16,10 +16,12 @@ export default {
     return `<div class='row'>${squares}</div>`;
   },
   square: (data) => {
-    const { date, incomings, outgoings } = data;
-    const day = new Date(date).getDay();
+    const { date: fullDate, incomings, outgoings } = data;
+    const date = fullDate.split('-')[2];
+    const day = new Date(fullDate).getDay();
     return `
     <span class='square ${day === 0 ? 'sun' : ''}'>
+        <span class='date'>${date}</span>
         <span class='in'>+${convertFormatPrice(incomings)}</span>
         <span class='out'>-${convertFormatPrice(outgoings)}</span>
     </span>`;

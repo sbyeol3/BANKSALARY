@@ -41,18 +41,18 @@ class Calendar {
 
     let day = 0;
     for (let i = 0; i < WEEKS; i++) {
+      if (day === length) break;
       let innerOfRow = '';
       for (let j = 0; j < DAYS; j++) {
+        const date = `${year}-${month}-${day + 1}`;
         if (day === length) break;
         else {
           if (i === 0 && day === 0 && firstDay !== j) {
             innerOfRow += $MONTHLY.empty;
-          } else innerOfRow += $MONTHLY.square(dates[day]);
-          day++;
+          } else innerOfRow += $MONTHLY.square({ ...dates[day++], date });
         }
       }
       const row = $MONTHLY.row(innerOfRow);
-      console.log(row);
       this.element.innerHTML += row;
     }
   }
