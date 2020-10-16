@@ -34,6 +34,11 @@ const store = {
     },
   },
 
+  monthly: {
+    length: 0,
+    dates: [],
+  },
+
   statistics: {
     total: 0,
     byDate: [],

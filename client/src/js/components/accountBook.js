@@ -3,6 +3,7 @@ import PaymentModal from './paymentModal';
 import Tab from './tab';
 import LogInput from './account/logInput';
 import Details from './account/details';
+import Monthly from './monthly';
 import Statistics from './statistics';
 import { setTabValue, setMonth, setYear } from '../store/action';
 import reducer from '../store/reducer';
@@ -24,11 +25,12 @@ class AccountBook {
   constructor() {
     this.element = document.createElement('article');
     this.element.classList.add('account');
+    this.modal = new PaymentModal();
     this.month = new Month(this.element);
     this.tab = new Tab(this.element);
     this.logInput = new LogInput(this.element);
     this.details = new Details(this.element);
-    this.modal = new PaymentModal();
+    this.monthly = new Monthly(this.element);
     this.statistics = new Statistics(this.element);
     this.detailsNumber = detailsValue.all;
     this.addEvent();
@@ -102,7 +104,7 @@ class AccountBook {
   }
 
   removeAllChildNodes() {
-    const deletedId = ['form', 'details', 'total', 'statistics'];
+    const deletedId = ['form', 'details', 'total', 'calendar', 'statistics'];
     [...this.element.childNodes].forEach((node) => {
       const { id } = node;
       if (deletedId.includes(id)) this.element.removeChild(node);
@@ -114,6 +116,8 @@ class AccountBook {
     if (tab === 0) {
       this.logInput.render();
       this.details.render(checked);
+    } else if (tab === 1) {
+      this.monthly.render();
     } else if (tab === 2) {
       this.statistics.render();
     }

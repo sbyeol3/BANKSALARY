@@ -84,6 +84,13 @@ export const setTotalSum = (value) => {
   };
 };
 
+export const setMonthly = (value) => {
+  return {
+    type: types.SET_MONTHLY,
+    payload: value,
+  };
+};
+
 export const setStatByCategory = (value) => {
   return {
     type: types.SET_STAT_CATEGORY,

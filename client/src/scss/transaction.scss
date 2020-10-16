@@ -230,6 +230,7 @@
         cursor: pointer;
     }
     &:hover {
+        background-color: rgba($main, 0.3);
         .edit {
             visibility: visible;
         }

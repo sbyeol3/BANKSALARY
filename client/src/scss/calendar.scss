@@ -1,0 +1,40 @@
+@import './color.scss';
+
+.calendar {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 560px;
+    margin: 30px auto;
+    border: 1px solid $border;
+    font-size: 14px;
+    .row {
+        box-sizing: border-box;
+        display: flex;
+        height: 80px;
+        &.index {
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+        }
+        .square {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            width: 80px;
+            height: 100%;
+            padding: 5px;
+            border: 0.1px solid $border;
+            font-size: 13px;
+            .in {
+                margin-top: auto;
+                margin-left: auto;
+                color: $orange;
+            }
+            .out {
+                margin-left: auto;
+                color: $main;
+            }
+        }
+    }
+}

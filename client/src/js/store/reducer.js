@@ -94,6 +94,14 @@ const reducer = (action) => {
         },
       });
     }
+    case types.SET_MONTHLY: {
+      const { length, dates } = payload;
+      return (store.monthly = {
+        ...store.monthly,
+        length,
+        dates: [...dates],
+      });
+    }
     case types.SET_STAT_DATE: {
       const { sum, dates } = payload;
       return (store.statistics = {
