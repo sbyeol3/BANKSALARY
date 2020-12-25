@@ -14,15 +14,15 @@ const request = async (config) => {
       method,
       data,
     });
-    return successHadler(response);
+    return successHandler(response);
   } catch (err) {
     console.log(err);
     const { response } = err;
-    return errorHadler(response);
+    return errorHandler(response);
   }
 };
 
-const successHadler = (response) => {
+const successHandler = (response) => {
   const { status, data } = response;
   return {
     success: true,
@@ -31,7 +31,7 @@ const successHadler = (response) => {
   };
 };
 
-const errorHadler = (response) => {
+const errorHandler = (response) => {
   const { status, data } = response;
   console.log(data.message);
   return {

@@ -25,13 +25,13 @@ class AccountBook {
   constructor() {
     this.element = document.createElement('article');
     this.element.classList.add('account');
-    this.modal = new PaymentModal();
     this.month = new Month(this.element);
     this.tab = new Tab(this.element);
     this.logInput = new LogInput(this.element);
     this.details = new Details(this.element);
     this.monthly = new Monthly(this.element);
     this.statistics = new Statistics(this.element);
+    this.modal = new PaymentModal();
     this.detailsNumber = detailsValue.all;
     this.addEvent();
   }
